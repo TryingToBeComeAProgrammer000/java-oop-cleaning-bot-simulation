@@ -1,15 +1,16 @@
 package view;
 
+import data.dao.MovementLogger;
 import data.dao.RoomDAO;
+import data.model.Robot;
 import data.model.Room;
-import service.RoomService;
+import service.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.List;
 
 /**
- * Main application window
+ * Main application window with simulation
  */
 public class MainFrame extends JFrame {
     private RoomDAO roomDAO;
@@ -21,13 +22,19 @@ public class MainFrame extends JFrame {
     private JPanel mainPanel;
     private RoomPanel roomPanel;
     private JPanel controlPanel;
-    private JPanel infoPanel;
+    private SimulationPanel simulationPanel;
     private JLabel statusLabel;
     private JComboBox<String> roomSelector;
+    
+    // Simulation
+    private GUISimulationController simulationController;
+    private MovementLogger logger;
+    private List<Robot> currentRobots;
     
     public MainFrame() {
         this.roomDAO = new RoomDAO();
         this.roomService = new RoomService();
+        this.logger = new MovementLogger();
         
         initializeFrame();
         createComponents();
@@ -35,8 +42,8 @@ public class MainFrame extends JFrame {
     }
     
     private void initializeFrame() {
-        setTitle("Robot Cleaning Simulator - Stage 1");
-        setSize(1000, 700);
+        setTitle("Robot Cleaning Simulator");
+        setSize(1900, 1000);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout(10, 10));
@@ -61,9 +68,49 @@ public class MainFrame extends JFrame {
         controlPanel = createControlPanel();
         mainPanel.add(controlPanel, BorderLayout.EAST);
         
-        // Info panel at the bottom
-        infoPanel = createInfoPanel();
-        mainPanel.add(infoPanel, BorderLayout.SOUTH);
+        // Simulation panel at the bottom
+        simulationPanel = new SimulationPanel();
+        simulationPanel.setSimulationListener(new SimulationPanel.SimulationListener() {
+            @Override
+            public void onStart() {
+                startSimulation();
+            }
+            
+            @Override
+            public void onPause() {
+                if (simulationController != null) {
+                    if (simulationController.isPaused()) {
+                        simulationController.resume();
+                        simulationPanel.updateStatus("Running...");
+                    } else {
+                        simulationController.pause();
+                    }
+                }
+            }
+            
+            @Override
+            public void onStop() {
+                if (simulationController != null) {
+                    simulationController.stop();
+                }
+            }
+            
+            @Override
+            public void onSpeedChange(int speed) {
+                if (simulationController != null) {
+                    simulationController.updateSpeed(speed);
+                }
+            }
+        });
+        mainPanel.add(simulationPanel, BorderLayout.SOUTH);
+        
+        // Status bar
+        JPanel statusPanel = new JPanel(new BorderLayout());
+        statusPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+        statusLabel = new JLabel("Ready. Load or create a room to begin.");
+        statusLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        statusPanel.add(statusLabel, BorderLayout.WEST);
+        mainPanel.add(statusPanel, BorderLayout.PAGE_END);
         
         add(mainPanel);
     }
@@ -73,18 +120,14 @@ public class MainFrame extends JFrame {
         panel.setBackground(new Color(41, 128, 185));
         panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         
-        JLabel titleLabel = new JLabel("🤖 Robot Cleaning Simulator");
+        JLabel titleLabel = new JLabel("Robot Cleaning Simulator");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
-        
-        JLabel subtitleLabel = new JLabel("Stage 1: Room Management");
-        subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        subtitleLabel.setForeground(Color.WHITE);
         
         JPanel textPanel = new JPanel(new GridLayout(2, 1));
         textPanel.setOpaque(false);
         textPanel.add(titleLabel);
-        textPanel.add(subtitleLabel);
+;
         
         panel.add(textPanel, BorderLayout.WEST);
         
@@ -94,7 +137,7 @@ public class MainFrame extends JFrame {
     private JPanel createControlPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createTitledBorder("Controls"));
+        panel.setBorder(BorderFactory.createTitledBorder("Room Controls"));
         panel.setPreferredSize(new Dimension(250, 0));
         
         // Room selector
@@ -115,7 +158,7 @@ public class MainFrame extends JFrame {
         panel.add(loadButton);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         
-        JButton createButton = createStyledButton("➕ Create New Room", new Color(46, 204, 113));
+        JButton createButton = createStyledButton("➕ Create Room", new Color(46, 204, 113));
         createButton.addActionListener(e -> openCreateRoomDialog());
         panel.add(createButton);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -125,55 +168,14 @@ public class MainFrame extends JFrame {
         panel.add(randomButton);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         
-        JButton statsButton = createStyledButton("📊 Show Statistics", new Color(241, 196, 15));
-        statsButton.addActionListener(e -> showStatistics());
-        panel.add(statsButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 5)));
-        
-        JButton saveButton = createStyledButton("💾 Save Current Room", new Color(230, 126, 34));
+        JButton saveButton = createStyledButton("💾 Save Room", new Color(230, 126, 34));
         saveButton.addActionListener(e -> saveCurrentRoom());
         panel.add(saveButton);
-        
-        // Legend
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
-        panel.add(createLegendPanel());
         
         // Spacer
         panel.add(Box.createVerticalGlue());
         
         return panel;
-    }
-    
-    private JPanel createLegendPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createTitledBorder("Legend"));
-        
-        panel.add(createLegendItem("L - Clean", RoomPanel.COLOR_CLEAN));
-        panel.add(createLegendItem("S - Dirty", RoomPanel.COLOR_DIRTY));
-        panel.add(createLegendItem("O - Permanent Obstacle", RoomPanel.COLOR_OBSTACLE));
-        panel.add(createLegendItem("T - Temporary Obstacle", RoomPanel.COLOR_TEMP_OBSTACLE));
-        panel.add(createLegendItem("R - Recharge Point", RoomPanel.COLOR_RECHARGE));
-        
-        return panel;
-    }
-    
-    private JPanel createLegendItem(String text, Color color) {
-        JPanel item = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 2));
-        item.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
-        
-        JPanel colorBox = new JPanel();
-        colorBox.setPreferredSize(new Dimension(20, 20));
-        colorBox.setBackground(color);
-        colorBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Arial", Font.PLAIN, 11));
-        
-        item.add(colorBox);
-        item.add(label);
-        
-        return item;
     }
     
     private JButton createStyledButton(String text, Color bgColor) {
@@ -185,17 +187,6 @@ public class MainFrame extends JFrame {
         button.setFont(new Font("Arial", Font.BOLD, 12));
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         return button;
-    }
-    
-    private JPanel createInfoPanel() {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
-        
-        statusLabel = new JLabel("Ready. Load or create a room to begin.");
-        statusLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        panel.add(statusLabel, BorderLayout.WEST);
-        
-        return panel;
     }
     
     private void loadRoomsFromFile() {
@@ -230,8 +221,9 @@ public class MainFrame extends JFrame {
         if (index >= 0 && loadedRooms != null && index < loadedRooms.size()) {
             currentRoom = loadedRooms.get(index);
             roomPanel.setRoom(currentRoom);
-            statusLabel.setText("Displaying Room " + (index + 1) + " - " + 
-                              currentRoom.getRows() + "x" + currentRoom.getCols());
+            simulationPanel.reset();
+            statusLabel.setText("Room loaded: " + currentRoom.getRows() + "x" + 
+                              currentRoom.getCols() + " - Ready to simulate");
         }
     }
     
@@ -243,8 +235,9 @@ public class MainFrame extends JFrame {
         if (newRoom != null) {
             currentRoom = newRoom;
             roomPanel.setRoom(currentRoom);
-            statusLabel.setText("Created new room: " + 
-                              currentRoom.getRows() + "x" + currentRoom.getCols());
+            simulationPanel.reset();
+            statusLabel.setText("New room created: " + currentRoom.getRows() + "x" + 
+                              currentRoom.getCols());
         }
     }
     
@@ -256,21 +249,10 @@ public class MainFrame extends JFrame {
         if (newRoom != null) {
             currentRoom = newRoom;
             roomPanel.setRoom(currentRoom);
-            statusLabel.setText("Generated random room: " + 
-                              currentRoom.getRows() + "x" + currentRoom.getCols());
+            simulationPanel.reset();
+            statusLabel.setText("Random room generated: " + currentRoom.getRows() + "x" + 
+                              currentRoom.getCols());
         }
-    }
-    
-    private void showStatistics() {
-        if (currentRoom == null) {
-            JOptionPane.showMessageDialog(this,
-                "Please select or create a room first.",
-                "No Room Selected", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        StatisticsDialog dialog = new StatisticsDialog(this, currentRoom, roomService);
-        dialog.setVisible(true);
     }
     
     private void saveCurrentRoom() {
@@ -291,8 +273,60 @@ public class MainFrame extends JFrame {
             JOptionPane.showMessageDialog(this,
                 "Room saved successfully to salon.txt",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
-            loadRoomsFromFile(); // Reload to update selector
+            loadRoomsFromFile();
         }
+    }
+    
+    private void startSimulation() {
+        if (currentRoom == null) {
+            JOptionPane.showMessageDialog(this,
+                "Please load or create a room first.",
+                "No Room", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        if (simulationController != null && simulationController.isRunning()) {
+            return;
+        }
+        
+        // Initialize simulation
+        logger.initialize();
+        
+        // Create services
+        RobotService robotService = new RobotService();
+        PathfindingService pathfindingService = new PathfindingService();
+        MultiRobotManager multiManager = new MultiRobotManager(logger);
+        RobotController robotController = new RobotController(robotService, pathfindingService, logger);
+        
+        // Calculate and initialize robots
+        int recommendedRobots = multiManager.calculateRecommendedRobots(currentRoom);
+        currentRobots = multiManager.initializeRobots(currentRoom, recommendedRobots);
+        
+        if (currentRobots.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                "Could not initialize robots!",
+                "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Create simulation controller
+        simulationController = new GUISimulationController(
+            currentRoom,
+            currentRobots,
+            logger,
+            multiManager,
+            robotController,
+            roomPanel,
+            simulationPanel,
+            1000 // Max steps
+        );
+        
+        // Update panel and start
+        simulationPanel.setSimulationRunning(true);
+        roomPanel.setRoom(currentRoom); // Refresh to show robots
+        statusLabel.setText("Simulation running with " + currentRobots.size() + " robot(s)...");
+        
+        simulationController.start();
     }
     
     public static void main(String[] args) {
