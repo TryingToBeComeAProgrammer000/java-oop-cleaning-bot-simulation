@@ -102,15 +102,14 @@ public class MainFrame extends JFrame {
                 }
             }
         });
-        mainPanel.add(simulationPanel, BorderLayout.SOUTH);
         
-        // Status bar
-        JPanel statusPanel = new JPanel(new BorderLayout());
-        statusPanel.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
-        statusLabel = new JLabel("Ready. Load or create a room to begin.");
-        statusLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        statusPanel.add(statusLabel, BorderLayout.WEST);
-        mainPanel.add(statusPanel, BorderLayout.PAGE_END);
+        JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.add(simulationPanel, BorderLayout.CENTER);
+        statusLabel = new JLabel("Ready");
+        statusLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        bottomPanel.add(statusLabel, BorderLayout.SOUTH);
+        
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
         
         add(mainPanel);
     }
@@ -124,10 +123,14 @@ public class MainFrame extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
         
+        JLabel subtitleLabel = new JLabel("Autonomous Cleaning with Pathfinding");
+        subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        subtitleLabel.setForeground(Color.WHITE);
+        
         JPanel textPanel = new JPanel(new GridLayout(2, 1));
         textPanel.setOpaque(false);
         textPanel.add(titleLabel);
-;
+        textPanel.add(subtitleLabel);
         
         panel.add(textPanel, BorderLayout.WEST);
         
@@ -153,22 +156,22 @@ public class MainFrame extends JFrame {
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         
         // Buttons
-        JButton loadButton = createStyledButton("📂 Load Rooms", new Color(52, 152, 219));
+        JButton loadButton = createStyledButton("Load Rooms", new Color(52, 152, 219));
         loadButton.addActionListener(e -> loadRoomsFromFile());
         panel.add(loadButton);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         
-        JButton createButton = createStyledButton("➕ Create Room", new Color(46, 204, 113));
+        JButton createButton = createStyledButton("Create Room", new Color(46, 204, 113));
         createButton.addActionListener(e -> openCreateRoomDialog());
         panel.add(createButton);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         
-        JButton randomButton = createStyledButton("🎲 Generate Random", new Color(155, 89, 182));
+        JButton randomButton = createStyledButton("Generate Random", new Color(155, 89, 182));
         randomButton.addActionListener(e -> openRandomRoomDialog());
         panel.add(randomButton);
         panel.add(Box.createRigidArea(new Dimension(0, 5)));
         
-        JButton saveButton = createStyledButton("💾 Save Room", new Color(230, 126, 34));
+        JButton saveButton = createStyledButton("Save Room", new Color(230, 126, 34));
         saveButton.addActionListener(e -> saveCurrentRoom());
         panel.add(saveButton);
         
@@ -221,9 +224,13 @@ public class MainFrame extends JFrame {
         if (index >= 0 && loadedRooms != null && index < loadedRooms.size()) {
             currentRoom = loadedRooms.get(index);
             roomPanel.setRoom(currentRoom);
-            simulationPanel.reset();
-            statusLabel.setText("Room loaded: " + currentRoom.getRows() + "x" + 
-                              currentRoom.getCols() + " - Ready to simulate");
+            if (simulationPanel != null) {
+                simulationPanel.reset();
+            }
+            if (statusLabel != null) {
+                statusLabel.setText("Room loaded: " + currentRoom.getRows() + "x" + 
+                                  currentRoom.getCols() + " - Ready to simulate");
+            }
         }
     }
     

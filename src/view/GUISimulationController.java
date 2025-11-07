@@ -146,14 +146,14 @@ public class GUISimulationController {
         
         // If no robot can move, end simulation
         if (!anyRobotMoved && multiRobotManager.areAllRobotsInactive(robots)) {
-            logger.log("\n⚠ ALL ROBOTS INACTIVE - MISSION ENDING");
+            logger.log("\nALL ROBOTS INACTIVE - MISSION ENDING");
             finishSimulation();
             return;
         }
         
         // Check if reached max steps
         if (stepCount >= maxSteps) {
-            logger.log("\n⚠ MAX STEPS REACHED - ENDING SIMULATION");
+            logger.log("\nMAX STEPS REACHED - ENDING SIMULATION");
             finishSimulation();
             return;
         }
@@ -165,7 +165,7 @@ public class GUISimulationController {
         if (percentage >= COMPLETION_THRESHOLD) {
             // Mission completed!
             missionStatus = "COMPLETED";
-            logger.log("\n🎉 MISSION COMPLETED! " + String.format("%.2f%%", percentage) + " cleaned");
+            logger.log("\nMISSION COMPLETED! " + String.format("%.2f%%", percentage) + " cleaned");
             finishSimulation();
         } else if (multiRobotManager.areAllRobotsInactive(robots)) {
             // All robots inactive
@@ -174,7 +174,7 @@ public class GUISimulationController {
             } else {
                 missionStatus = "FAILED";
             }
-            logger.log("\n⚠ ALL ROBOTS INACTIVE - Mission status: " + missionStatus);
+            logger.log("\nALL ROBOTS INACTIVE - Mission status: " + missionStatus);
         }
     }
     

@@ -190,13 +190,13 @@ public class ResultsDialog extends JDialog {
     private String getStatusMessage(String status, double percentage) {
         switch (status) {
             case "COMPLETED":
-                return "✅ Excellent! The cleaning mission was completed successfully. " +
+                return "Excellent! The cleaning mission was completed successfully. " +
                        "The room has been cleaned to satisfaction (≥80%).";
             case "ACCEPTABLE":
-                return "⚠️ The mission was partially successful. The room is cleaner but " +
+                return "The mission was partially successful. The room is cleaner but " +
                        "did not reach the optimal goal (≥50% but <80%).";
             default:
-                return "❌ The mission failed. The robots were unable to clean the minimum " +
+                return "The mission failed. The robots were unable to clean the minimum " +
                        "required amount (<50%) or all robots became inactive.";
         }
     }

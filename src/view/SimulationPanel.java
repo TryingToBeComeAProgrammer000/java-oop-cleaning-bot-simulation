@@ -47,7 +47,7 @@ public class SimulationPanel extends JPanel {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         
         // Start button
-        startButton = new JButton("▶ Start");
+        startButton = new JButton(" |> Start");
         startButton.setBackground(new Color(46, 204, 113));
         startButton.setForeground(Color.WHITE);
         startButton.setFont(new Font("Arial", Font.BOLD, 14));
@@ -57,7 +57,7 @@ public class SimulationPanel extends JPanel {
         });
         
         // Pause button
-        pauseButton = new JButton("⏸ Pause");
+        pauseButton = new JButton(" || Pause");
         pauseButton.setBackground(new Color(241, 196, 15));
         pauseButton.setForeground(Color.WHITE);
         pauseButton.setFont(new Font("Arial", Font.BOLD, 14));
@@ -68,7 +68,7 @@ public class SimulationPanel extends JPanel {
         });
         
         // Stop button
-        stopButton = new JButton("⏹ Stop");
+        stopButton = new JButton("[] Stop");
         stopButton.setBackground(new Color(231, 76, 60));
         stopButton.setForeground(Color.WHITE);
         stopButton.setFont(new Font("Arial", Font.BOLD, 14));

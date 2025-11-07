@@ -109,7 +109,7 @@ public class SimulationController {
             // Mission completed!
             isCompleted = true;
             missionStatus = "COMPLETED";
-            logger.log("\n🎉 MISSION COMPLETED! " + String.format("%.2f%%", percentage) + " cleaned");
+            logger.log("\nMISSION COMPLETED! " + String.format("%.2f%%", percentage) + " cleaned");
         } else if (multiRobotManager.areAllRobotsInactive(robots)) {
             // All robots inactive
             isCompleted = true;
@@ -120,7 +120,7 @@ public class SimulationController {
                 missionStatus = "FAILED";
             }
             
-            logger.log("\n⚠ ALL ROBOTS INACTIVE - Mission status: " + missionStatus);
+            logger.log("\nALL ROBOTS INACTIVE - Mission status: " + missionStatus);
         }
     }
     

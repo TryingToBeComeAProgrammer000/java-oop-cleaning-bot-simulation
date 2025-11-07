@@ -72,11 +72,11 @@ public class RandomRoomDialog extends JDialog {
         infoPanel.setBorder(BorderFactory.createTitledBorder("Default Distribution"));
         infoPanel.setMaximumSize(new Dimension(350, 150));
         
-        infoPanel.add(createInfoLabel("• Clean (L): 40%"));
-        infoPanel.add(createInfoLabel("• Dirty (S): 30%"));
-        infoPanel.add(createInfoLabel("• Permanent Obstacles (O): 15%"));
-        infoPanel.add(createInfoLabel("• Temporary Obstacles (T): 15%"));
-        infoPanel.add(createInfoLabel("• Recharge Points (R): 1-4 (random)"));
+        infoPanel.add(createInfoLabel("- Clean (L): 40%"));
+        infoPanel.add(createInfoLabel("- Dirty (S): 30%"));
+        infoPanel.add(createInfoLabel("- Permanent Obstacles (O): 15%"));
+        infoPanel.add(createInfoLabel("- Temporary Obstacles (T): 15%"));
+        infoPanel.add(createInfoLabel("- Recharge Points (R): 1-4 (random)"));
         
         mainPanel.add(infoPanel);
         mainPanel.add(Box.createVerticalGlue());
