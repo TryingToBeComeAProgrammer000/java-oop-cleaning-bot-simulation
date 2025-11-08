@@ -33,11 +33,13 @@ public class TemporaryObstacleManager {
         // Stop any previous timer
         stop();
         
-        // Initialize all temporary obstacles
+        // Start new timer FIRST
+        timer = new Timer("TempObstacleManager", true);
+        
+        // Then initialize all temporary obstacles
         initializeTemporaryObstacles();
         
-        // Start new timer
-        timer = new Timer("TempObstacleManager", true);
+        System.out.println("[TemporaryObstacleManager] Started managing temporary obstacles");
     }
     
     /**
@@ -46,14 +48,19 @@ public class TemporaryObstacleManager {
     private void initializeTemporaryObstacles() {
         if (room == null) return;
         
+        int obstacleCount = 0;
+        
         for (int i = 0; i < room.getRows(); i++) {
             for (int j = 0; j < room.getCols(); j++) {
                 Cell cell = room.getCell(i, j);
                 if (cell != null && cell.isTemporaryObstacle()) {
                     scheduleTemporaryObstacle(i, j, cell);
+                    obstacleCount++;
                 }
             }
         }
+        
+        System.out.println("[TemporaryObstacleManager] Scheduled " + obstacleCount + " temporary obstacles");
     }
     
     /**
@@ -74,6 +81,11 @@ public class TemporaryObstacleManager {
         cell.setTemporaryObstacleTime(startTime);
         cell.setTemporaryObstacleDuration(duration);
         
+        long totalWait = initialDelay + duration;
+        
+        System.out.println(String.format("[TemporaryObstacleManager] Obstacle at (%d,%d) will disappear in %.1f seconds", 
+                                         row, col, totalWait / 1000.0));
+        
         // Schedule removal (PERMANENT - does not reappear)
         TimerTask removalTask = new TimerTask() {
             @Override
@@ -85,17 +97,23 @@ public class TemporaryObstacleManager {
                         c.setState('L');
                         c.setTemporaryObstacleTime(0);
                         c.setTemporaryObstacleDuration(0);
-                        // No reappear task - obstacle is permanently removed
+                        System.out.println(String.format("[TemporaryObstacleManager] Obstacle at (%d,%d) removed permanently", row, col));
                     }
                 }
             }
         };
         
         if (timer != null) {
-            timer.schedule(removalTask, initialDelay + duration);
-            synchronized (activeTasks) {
-                activeTasks.add(removalTask);
+            try {
+                timer.schedule(removalTask, totalWait);
+                synchronized (activeTasks) {
+                    activeTasks.add(removalTask);
+                }
+            } catch (Exception e) {
+                System.err.println("[TemporaryObstacleManager] Error scheduling task: " + e.getMessage());
             }
+        } else {
+            System.err.println("[TemporaryObstacleManager] Timer is null, cannot schedule obstacle removal");
         }
     }
     
@@ -103,6 +121,8 @@ public class TemporaryObstacleManager {
      * Stop managing temporary obstacles
      */
     public void stop() {
+        System.out.println("[TemporaryObstacleManager] Stopping... (testing)");
+        
         if (timer != null) {
             timer.cancel();
             timer = null;

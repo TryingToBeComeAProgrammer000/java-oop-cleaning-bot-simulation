@@ -39,10 +39,10 @@ public class RobotController {
             logger.logCleaning(robot);
         }
         
-        // 2. Check if on recharge point and needs charging
+        // 2. Check if on recharge point and battery is low (< 15)
+        // Only recharge if we really need it to avoid loops
         if (robotService.isOnRechargePoint(room, robot)) {
-            // Only recharge if battery is below max AND below a threshold (avoid infinite loop)
-            if (robot.getBattery() < 20 && robot.getBattery() < 15) {
+            if (robot.getBattery() < 15) {
                 robot.recharge();
                 logger.logRecharge(robot);
                 
@@ -53,7 +53,7 @@ public class RobotController {
                 
                 return true;
             }
-            // Battery is good enough, leave recharge point and continue working
+            // Battery is good (≥15), DON'T recharge, leave and continue working
         }
         
         // 3. Check if needs to go recharge (battery critically low)
@@ -129,14 +129,16 @@ public class RobotController {
         if (robotService.moveRobot(room, robot, nextMove.x, nextMove.y)) {
             logger.logMovement(robot, oldX, oldY, robot.getX(), robot.getY());
             
-            // Check if reached recharge and recharge
+            // Check if reached recharge and recharge (only if battery < 15)
             if (robotService.isOnRechargePoint(room, robot)) {
-                robot.recharge();
-                logger.logRecharge(robot);
-                
-                // Make sure robot doesn't die after recharging
-                if (!robot.isActive()) {
-                    robot.setActive(true);
+                if (robot.getBattery() < 15) {
+                    robot.recharge();
+                    logger.logRecharge(robot);
+                    
+                    // Make sure robot doesn't die after recharging
+                    if (!robot.isActive()) {
+                        robot.setActive(true);
+                    }
                 }
             }
             
@@ -174,7 +176,8 @@ public class RobotController {
                 int totalDistance = distanceToTarget + distanceToRecharge;
                 
                 // Need to have enough battery to go to target and back to recharge
-                if (totalDistance + 2 > robot.getBattery()) {
+                // Add safety margin of 3
+                if (totalDistance + 3 > robot.getBattery()) {
                     // Not enough battery for this target, go recharge first
                     return goToRecharge(room, robot);
                 }

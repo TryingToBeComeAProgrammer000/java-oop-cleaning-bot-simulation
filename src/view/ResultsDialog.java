@@ -48,15 +48,15 @@ public class ResultsDialog extends JDialog {
         switch (status) {
             case "COMPLETED":
                 bgColor = new Color(46, 204, 113); // Green
-                icon = "✅";
+                icon = ":)";
                 break;
             case "ACCEPTABLE":
                 bgColor = new Color(241, 196, 15); // Yellow
-                icon = "⚠️";
+                icon = "!️";
                 break;
             default:
                 bgColor = new Color(231, 76, 60); // Red
-                icon = "❌";
+                icon = "X";
                 break;
         }
         

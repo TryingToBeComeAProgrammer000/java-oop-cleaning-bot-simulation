@@ -33,7 +33,7 @@ public class StatisticsDialog extends JDialog {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
         // Title
-        JLabel titleLabel = new JLabel("📊 Room Statistics");
+        JLabel titleLabel = new JLabel("Room Statistics");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(titleLabel);

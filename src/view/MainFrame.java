@@ -125,14 +125,9 @@ public class MainFrame extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
         
-        JLabel subtitleLabel = new JLabel("Autonomous Cleaning with Pathfinding");
-        subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        subtitleLabel.setForeground(Color.WHITE);
-        
         JPanel textPanel = new JPanel(new GridLayout(2, 1));
         textPanel.setOpaque(false);
         textPanel.add(titleLabel);
-        textPanel.add(subtitleLabel);
         
         panel.add(textPanel, BorderLayout.WEST);
         
@@ -179,7 +174,7 @@ public class MainFrame extends JFrame {
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         
         // RESET BUTTON (NEW)
-        JButton resetButton = createStyledButton("🔄 Reset Room", new Color(231, 76, 60));
+        JButton resetButton = createStyledButton("Reset Room", new Color(231, 76, 60));
         resetButton.addActionListener(e -> resetRoom());
         panel.add(resetButton);
         

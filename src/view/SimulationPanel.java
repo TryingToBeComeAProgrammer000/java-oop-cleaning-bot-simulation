@@ -32,7 +32,7 @@ public class SimulationPanel extends JPanel {
     public SimulationPanel() {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createTitledBorder("Simulation Control"));
-        setPreferredSize(new Dimension(0, 200));
+        setPreferredSize(new Dimension(0, 250));
         
         // Control buttons panel
         JPanel controlPanel = createControlPanel();

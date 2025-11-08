@@ -216,61 +216,6 @@ public class RobotService {
     }
     
     /**
-     * Get next move towards a target using simple greedy approach
-     * Moves one step closer to target on X or Y axis
-     * @param room The room
-     * @param robot The robot
-     * @param target Target point
-     * @return Next position to move to, or null if can't move
-     */
-    public Point getNextMoveTowards(Room room, Robot robot, Point target) {
-        int currentX = robot.getX();
-        int currentY = robot.getY();
-        
-        // Calculate differences
-        int dx = target.x - currentX;
-        int dy = target.y - currentY;
-        
-        // Try to move on X axis first if needed
-        if (dx != 0) {
-            int nextX = currentX + (dx > 0 ? 1 : -1);
-            if (canMoveTo(room, nextX, currentY)) {
-                return new Point(nextX, currentY);
-            }
-        }
-        
-        // Try to move on Y axis if X didn't work or not needed
-        if (dy != 0) {
-            int nextY = currentY + (dy > 0 ? 1 : -1);
-            if (canMoveTo(room, currentX, nextY)) {
-                return new Point(currentX, nextY);
-            }
-        }
-        
-        // If direct path blocked, try adjacent cells
-        List<Point> adjacent = getAdjacentCells(room, robot);
-        for (Point adj : adjacent) {
-            if (canMoveTo(room, adj.x, adj.y)) {
-                // Choose the one that gets us closer to target
-                int newDist = calculateDistance(adj.x, adj.y, target.x, target.y);
-                int currentDist = calculateDistance(currentX, currentY, target.x, target.y);
-                if (newDist < currentDist) {
-                    return adj;
-                }
-            }
-        }
-        
-        // If no good move, just try any adjacent cell
-        for (Point adj : adjacent) {
-            if (canMoveTo(room, adj.x, adj.y)) {
-                return adj;
-            }
-        }
-        
-        return null; // Stuck
-    }
-    
-    /**
      * Check if robot is on a recharge point
      * @param room The room
      * @param robot The robot
@@ -283,22 +228,24 @@ public class RobotService {
     
     /**
      * Check if robot needs to go recharge
-     * Considers battery level and distance to nearest recharge point
+     * More conservative approach to avoid premature recharging
+     * 
      * @param room The room
      * @param robot The robot
      * @return true if should go recharge
      */
     public boolean needsRecharge(Room room, Robot robot) {
-        // Always recharge if battery is very low
-        if (robot.getBattery() <= 3) {
+        // Critical battery - must recharge NOW
+        if (robot.getBattery() <= 5) {
             return true;
         }
         
-        // Don't need recharge if battery is good
+        // Don't go recharge if battery is good
         if (robot.getBattery() >= 12) {
             return false;
         }
         
+        // Medium battery (6-11): check if we can reach recharge point
         Point closestRecharge = getClosestRechargePoint(room, robot);
         if (closestRecharge == null) {
             return false; // No recharge point available
@@ -307,9 +254,9 @@ public class RobotService {
         int distanceToRecharge = calculateDistance(robot.getX(), robot.getY(), 
                                                    closestRecharge.x, closestRecharge.y);
         
-        // Need recharge if battery is getting close to distance needed
-        // Use Manhattan distance as approximation (actual path may be longer)
-        return robot.getBattery() <= (distanceToRecharge * 1.5 + 3); // 1.5x for detours, +3 safety
+        // Need recharge if we might not make it back
+        // Use conservative estimate: actual path is likely longer than Manhattan distance
+        return robot.getBattery() <= (distanceToRecharge * 2 + 2);
     }
     
     /**
@@ -404,42 +351,5 @@ public class RobotService {
         }
         
         return dirtyCells;
-    }
-    
-    /**
-     * Determine which robot should handle a specific target
-     * Based on distance and battery level
-     * 
-     * @param room The room
-     * @param target Target position
-     * @param robots List of robots to consider
-     * @return Best robot for the job or null
-     */
-    public Robot selectBestRobotForTarget(Room room, Point target, List<Robot> robots) {
-        Robot bestRobot = null;
-        int bestScore = Integer.MIN_VALUE;
-        
-        for (Robot robot : robots) {
-            if (!robot.isActive()) {
-                continue;
-            }
-            
-            int distance = calculateDistance(robot.getX(), robot.getY(), target.x, target.y);
-            
-            // Skip if doesn't have energy to reach
-            if (!robot.hasEnergyToReach(distance + 3)) { // +3 safety margin
-                continue;
-            }
-            
-            // Score based on distance (closer is better) and battery (more is better)
-            int score = -distance + (robot.getBattery() / 2);
-            
-            if (score > bestScore) {
-                bestScore = score;
-                bestRobot = robot;
-            }
-        }
-        
-        return bestRobot;
     }
 }
