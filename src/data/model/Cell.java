@@ -8,7 +8,8 @@ package data.model;
 public class Cell {
     private char state;
     private boolean cleaned; // Track if a dirty cell has been cleaned
-    private long temporaryObstacleTime; // Time when temporary obstacle was placed (in seconds)
+    private long temporaryObstacleTime; // Time when temporary obstacle was placed (in milliseconds)
+    private long temporaryObstacleDuration; // Duration in milliseconds
     
     /**
      * Constructor with state
@@ -18,6 +19,7 @@ public class Cell {
         this.state = state;
         this.cleaned = false;
         this.temporaryObstacleTime = 0;
+        this.temporaryObstacleDuration = 0;
     }
     
     /**
@@ -50,6 +52,39 @@ public class Cell {
 
     public void setTemporaryObstacleTime(long temporaryObstacleTime) {
         this.temporaryObstacleTime = temporaryObstacleTime;
+    }
+    
+    public long getTemporaryObstacleDuration() {
+        return temporaryObstacleDuration;
+    }
+
+    public void setTemporaryObstacleDuration(long temporaryObstacleDuration) {
+        this.temporaryObstacleDuration = temporaryObstacleDuration;
+    }
+    
+    /**
+     * Check if temporary obstacle has expired and should be removed
+     * @return true if expired
+     */
+    public boolean isTemporaryObstacleExpired() {
+        if (!isTemporaryObstacle() || temporaryObstacleTime == 0) {
+            return false;
+        }
+        long currentTime = System.currentTimeMillis();
+        return (currentTime - temporaryObstacleTime) >= temporaryObstacleDuration;
+    }
+    
+    /**
+     * Get remaining time for temporary obstacle in milliseconds
+     * @return remaining time or 0 if not applicable
+     */
+    public long getTemporaryObstacleRemainingTime() {
+        if (!isTemporaryObstacle() || temporaryObstacleTime == 0) {
+            return 0;
+        }
+        long currentTime = System.currentTimeMillis();
+        long elapsed = currentTime - temporaryObstacleTime;
+        return Math.max(0, temporaryObstacleDuration - elapsed);
     }
     
     /**

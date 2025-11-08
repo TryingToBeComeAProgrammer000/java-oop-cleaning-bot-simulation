@@ -42,22 +42,26 @@ public class RoomService {
         Room room = new Room(rows, cols);
         int totalCells = rows * cols;
         
-        // Calculate number of cells for each state
-        int numClean = (int) Math.round((cleanPercentage / 100.0) * totalCells);
-        int numDirty = (int) Math.round((dirtyPercentage / 100.0) * totalCells);
-        int numPermanentObstacle = (int) Math.round((permanentObstaclePercentage / 100.0) * totalCells);
-        int numTemporaryObstacle = (int) Math.round((temporaryObstaclePercentage / 100.0) * totalCells);
+        // ALWAYS guarantee 1-4 recharge points
+        // Calculate first to ensure they're always included
+        int numRecharge = 1 + random.nextInt(4); // This gives 1, 2, 3, or 4
         
-        // Random number of recharge points (1 to 4)
-        int numRecharge = random.nextInt(4) + 1;
+        // Calculate number of cells for each state
+        // Reserve space for recharge points
+        int availableCells = totalCells - numRecharge;
+        
+        int numClean = (int) Math.round((cleanPercentage / 100.0) * availableCells);
+        int numDirty = (int) Math.round((dirtyPercentage / 100.0) * availableCells);
+        int numPermanentObstacle = (int) Math.round((permanentObstaclePercentage / 100.0) * availableCells);
+        int numTemporaryObstacle = (int) Math.round((temporaryObstaclePercentage / 100.0) * availableCells);
         
         // Create array with all states
         char[] states = new char[totalCells];
         int index = 0;
         
-        // Fill with clean cells
-        for (int i = 0; i < numClean && index < totalCells; i++) {
-            states[index++] = 'L';
+        // FIRST: Add recharge points (GUARANTEED)
+        for (int i = 0; i < numRecharge && index < totalCells; i++) {
+            states[index++] = 'R';
         }
         
         // Fill with dirty cells
@@ -75,9 +79,9 @@ public class RoomService {
             states[index++] = 'T';
         }
         
-        // Fill with recharge points
-        for (int i = 0; i < numRecharge && index < totalCells; i++) {
-            states[index++] = 'R';
+        // Fill with clean cells
+        for (int i = 0; i < numClean && index < totalCells; i++) {
+            states[index++] = 'L';
         }
         
         // Fill remaining cells with clean state
@@ -97,6 +101,11 @@ public class RoomService {
         }
         
         room.setTotalDirtyCells(room.countDirtyCells());
+        
+        // Verify recharge points were created
+        int actualRechargePoints = room.countRechargePoints();
+        System.out.println("Generated room with " + actualRechargePoints + " recharge points (requested: " + numRecharge + ")");
+        
         return room;
     }
     
@@ -153,7 +162,6 @@ public class RoomService {
     
     /**
      * Calculate recommended number of robots based on room characteristics
-     * This is a basic implementation - you should refine this logic
      * @param room The room to analyze
      * @return Recommended number of robots
      */

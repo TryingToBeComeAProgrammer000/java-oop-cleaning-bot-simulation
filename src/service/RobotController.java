@@ -39,10 +39,10 @@ public class RobotController {
             logger.logCleaning(robot);
         }
         
-        // 2. Check if on recharge point
+        // 2. Check if on recharge point and needs charging
         if (robotService.isOnRechargePoint(room, robot)) {
-            // Always recharge when on recharge point (up to max 20)
-            if (robot.getBattery() < 20) {
+            // Only recharge if battery is below max AND below a threshold (avoid infinite loop)
+            if (robot.getBattery() < 20 && robot.getBattery() < 15) {
                 robot.recharge();
                 logger.logRecharge(robot);
                 
@@ -53,16 +53,23 @@ public class RobotController {
                 
                 return true;
             }
-            // Fully charged, continue to next action
+            // Battery is good enough, leave recharge point and continue working
         }
         
-        // 3. Check if needs to go recharge
+        // 3. Check if needs to go recharge (battery critically low)
         if (robotService.needsRecharge(room, robot)) {
             return goToRecharge(room, robot);
         }
         
         // 4. Find and go to dirty cell
-        return goToClean(room, robot);
+        boolean moved = goToClean(room, robot);
+        
+        // 5. If couldn't move to clean, try any available move to avoid being stuck
+        if (!moved) {
+            moved = makeEmergencyMove(room, robot);
+        }
+        
+        return moved;
     }
     
     /**
@@ -239,6 +246,37 @@ public class RobotController {
             return true;
         }
         
+        return false;
+    }
+    
+    /**
+     * Emergency move to avoid robot getting stuck
+     * Tries to move to any adjacent free cell
+     * 
+     * @param room The room
+     * @param robot The robot
+     * @return true if moved, false if completely stuck
+     */
+    private boolean makeEmergencyMove(Room room, Robot robot) {
+        List<Point> adjacentCells = robotService.getAdjacentCells(room, robot);
+        
+        // Try each adjacent cell
+        for (Point cell : adjacentCells) {
+            if (robotService.canMoveTo(room, cell.x, cell.y)) {
+                int oldX = robot.getX();
+                int oldY = robot.getY();
+                
+                if (robotService.moveRobot(room, robot, cell.x, cell.y)) {
+                    logger.log("Robot #" + robot.getId() + " - Making emergency move to avoid being stuck");
+                    logger.logMovement(robot, oldX, oldY, robot.getX(), robot.getY());
+                    return true;
+                }
+            }
+        }
+        
+        // Completely stuck - shouldn't happen but log if it does
+        logger.log("Robot #" + robot.getId() + " - WARNING: Completely stuck at (" + 
+                  robot.getX() + "," + robot.getY() + ")");
         return false;
     }
 }

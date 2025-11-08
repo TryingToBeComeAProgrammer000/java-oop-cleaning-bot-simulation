@@ -34,3 +34,33 @@ O O S S L T S S
 L L L T R L T S
 L L O L S L L S
 L S O S S T L L
+
+T T L O O L S S
+L L L L L T O L
+O O L L L T L L
+L L L T R L T L
+L L O L L L L L
+L S O L L T L L
+
+L L O L S L L S S L
+L L L S T T O T S L
+L L L T O S L S S L
+T S O S O L L O S L
+S T T T L S O S L L
+S L O O S T S L S L
+S T S L L T L L O O
+S L S O L L L T O L
+S O L T S L O L L S
+S S S S T L S S O S
+L O L L S T T L L L
+
+S S L T R L L L S
+O L L T S L L L L
+T S S O L L T T O
+T S L S T L L R S
+S L S S T L L O T
+L O O S O O L O L
+S L S S S T R L S
+L L T S L L S L L
+L L S L S O L L S
+O O T T O L S S S

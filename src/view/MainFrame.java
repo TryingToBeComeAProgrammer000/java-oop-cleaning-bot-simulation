@@ -30,11 +30,13 @@ public class MainFrame extends JFrame {
     private GUISimulationController simulationController;
     private MovementLogger logger;
     private List<Robot> currentRobots;
+    private TemporaryObstacleManager tempObstacleManager;
     
     public MainFrame() {
         this.roomDAO = new RoomDAO();
         this.roomService = new RoomService();
         this.logger = new MovementLogger();
+        this.tempObstacleManager = new TemporaryObstacleManager();
         
         initializeFrame();
         createComponents();
@@ -174,6 +176,12 @@ public class MainFrame extends JFrame {
         JButton saveButton = createStyledButton("Save Room", new Color(230, 126, 34));
         saveButton.addActionListener(e -> saveCurrentRoom());
         panel.add(saveButton);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        
+        // RESET BUTTON (NEW)
+        JButton resetButton = createStyledButton("🔄 Reset Room", new Color(231, 76, 60));
+        resetButton.addActionListener(e -> resetRoom());
+        panel.add(resetButton);
         
         // Spacer
         panel.add(Box.createVerticalGlue());
@@ -284,6 +292,47 @@ public class MainFrame extends JFrame {
         }
     }
     
+    /**
+     * Reset the room to its original state
+     * Removes all robots, obstacles, and simulation traces
+     */
+    private void resetRoom() {
+        if (currentRoom == null) {
+            JOptionPane.showMessageDialog(this,
+                "Please select or create a room first.",
+                "No Room Selected", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Stop any running simulation
+        if (simulationController != null && simulationController.isRunning()) {
+            simulationController.stop();
+        }
+        
+        // Stop temporary obstacle manager
+        tempObstacleManager.stop();
+        
+        // Reset the room to original state
+        currentRoom.reset();
+        
+        // Clear robots reference
+        currentRobots = null;
+        
+        // Reset simulation controller
+        simulationController = null;
+        
+        // Update UI
+        roomPanel.setRoom(currentRoom);
+        simulationPanel.reset();
+        statusLabel.setText("Room reset to original state - Ready for new simulation");
+        
+        JOptionPane.showMessageDialog(this,
+            "Room has been reset to its original state.\n" +
+            "All robots and simulation data have been cleared.\n" +
+            "Press START to begin a new simulation.",
+            "Room Reset", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void startSimulation() {
         if (currentRoom == null) {
             JOptionPane.showMessageDialog(this,
@@ -296,8 +345,14 @@ public class MainFrame extends JFrame {
             return;
         }
         
+        // Stop and clear any previous temporary obstacle management
+        tempObstacleManager.stop();
+        
         // Initialize simulation
         logger.initialize();
+        
+        // Start temporary obstacle manager for this room
+        tempObstacleManager.startManaging(currentRoom);
         
         // Create services
         RobotService robotService = new RobotService();
@@ -313,6 +368,7 @@ public class MainFrame extends JFrame {
             JOptionPane.showMessageDialog(this,
                 "Could not initialize robots!",
                 "Error", JOptionPane.ERROR_MESSAGE);
+            tempObstacleManager.stop();
             return;
         }
         

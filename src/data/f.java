@@ -8,6 +8,6 @@ package data;
  *
  * @author uyv31
  */
-public class f {
+public class F {
     
 }

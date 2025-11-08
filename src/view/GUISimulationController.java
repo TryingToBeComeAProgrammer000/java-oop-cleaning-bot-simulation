@@ -27,7 +27,7 @@ public class GUISimulationController {
     private boolean isPaused;
     private String missionStatus;
     
-    private static final double COMPLETION_THRESHOLD = 80.0;
+    private static final double COMPLETION_THRESHOLD = 80.0; // Show COMPLETED at ≥80%
     private static final double ACCEPTABLE_THRESHOLD = 50.0;
     
     public GUISimulationController(Room room, List<Robot> robots, 
@@ -105,6 +105,13 @@ public class GUISimulationController {
             simulationTimer.stop();
         }
         
+        // Clear robots from room
+        if (room != null && robots != null) {
+            for (Robot robot : robots) {
+                room.removeRobot(robot);
+            }
+        }
+        
         logger.log("\n--- SIMULATION STOPPED at step " + stepCount + " ---");
         finishSimulation();
     }
@@ -141,12 +148,16 @@ public class GUISimulationController {
         // Update GUI
         updateGUI();
         
-        // Check completion conditions
-        checkMissionStatus();
+        // Check if all dirty cells are cleaned (100%)
+        if (room.countDirtyCells() == 0) {
+            logger.log("\nALL CELLS CLEANED (100%) - MISSION ENDING");
+            finishSimulation();
+            return;
+        }
         
-        // If no robot can move, end simulation
-        if (!anyRobotMoved && multiRobotManager.areAllRobotsInactive(robots)) {
-            logger.log("\nALL ROBOTS INACTIVE - MISSION ENDING");
+        // If no robot can move or all inactive, end simulation
+        if (!anyRobotMoved || multiRobotManager.areAllRobotsInactive(robots)) {
+            logger.log("\nNO MORE PROGRESS POSSIBLE - MISSION ENDING");
             finishSimulation();
             return;
         }
@@ -156,25 +167,6 @@ public class GUISimulationController {
             logger.log("\nMAX STEPS REACHED - ENDING SIMULATION");
             finishSimulation();
             return;
-        }
-    }
-    
-    private void checkMissionStatus() {
-        double percentage = getCleaningPercentage();
-        
-        if (percentage >= COMPLETION_THRESHOLD) {
-            // Mission completed!
-            missionStatus = "COMPLETED";
-            logger.log("\nMISSION COMPLETED! " + String.format("%.2f%%", percentage) + " cleaned");
-            finishSimulation();
-        } else if (multiRobotManager.areAllRobotsInactive(robots)) {
-            // All robots inactive
-            if (percentage >= ACCEPTABLE_THRESHOLD) {
-                missionStatus = "ACCEPTABLE";
-            } else {
-                missionStatus = "FAILED";
-            }
-            logger.log("\nALL ROBOTS INACTIVE - Mission status: " + missionStatus);
         }
     }
     
@@ -199,6 +191,18 @@ public class GUISimulationController {
             simulationTimer.stop();
         }
         
+        // Calculate final percentage to determine mission status
+        double finalPercentage = getCleaningPercentage();
+        
+        // Determine mission status based on final percentage
+        if (finalPercentage >= COMPLETION_THRESHOLD) {
+            missionStatus = "COMPLETED"; // ≥80% is COMPLETED
+        } else if (finalPercentage >= ACCEPTABLE_THRESHOLD) {
+            missionStatus = "ACCEPTABLE"; // 50-79% is ACCEPTABLE
+        } else {
+            missionStatus = "FAILED"; // <50% is FAILED
+        }
+        
         // Final update
         updateGUI();
         
@@ -207,7 +211,6 @@ public class GUISimulationController {
         simulationPanel.setSimulationRunning(false);
         
         // Log final results
-        double finalPercentage = getCleaningPercentage();
         int totalCleaned = multiRobotManager.getTotalCellsCleaned(robots);
         int activeRobots = multiRobotManager.getActiveRobotCount(robots);
         int totalMovements = multiRobotManager.getTotalMovements(robots);

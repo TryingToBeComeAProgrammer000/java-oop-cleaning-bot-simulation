@@ -9,6 +9,7 @@ import java.util.Random;
  */
 public class Room {
     private Cell[][] matrix;
+    private Cell[][] originalMatrix; // Store original state for reset
     private int rows;
     private int cols;
     private int totalDirtyCells;
@@ -32,6 +33,9 @@ public class Room {
                 matrix[i][j] = new Cell('L');
             }
         }
+        
+        // Save original state
+        saveOriginalState();
     }
     
     /**
@@ -44,6 +48,43 @@ public class Room {
         this.cols = matrix[0].length;
         this.totalDirtyCells = countDirtyCells();
         this.robots = new ArrayList<>();
+        
+        // Save original state
+        saveOriginalState();
+    }
+    
+    /**
+     * Save the original state of the room for reset functionality
+     */
+    private void saveOriginalState() {
+        originalMatrix = new Cell[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                // Create deep copy of cells
+                Cell original = matrix[i][j];
+                originalMatrix[i][j] = new Cell(original.getState());
+            }
+        }
+    }
+    
+    /**
+     * Reset the room to its original state
+     * Removes all robots and restores original cell states
+     */
+    public void reset() {
+        // Clear all robots
+        robots.clear();
+        
+        // Restore original matrix state
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                Cell original = originalMatrix[i][j];
+                matrix[i][j] = new Cell(original.getState());
+            }
+        }
+        
+        // Recalculate total dirty cells
+        totalDirtyCells = countDirtyCells();
     }
 
     // Getters and Setters
@@ -56,6 +97,7 @@ public class Room {
         this.rows = matrix.length;
         this.cols = matrix[0].length;
         this.totalDirtyCells = countDirtyCells();
+        saveOriginalState(); // Update original state when matrix changes
     }
 
     public int getRows() {

@@ -191,13 +191,13 @@ public class ResultsDialog extends JDialog {
         switch (status) {
             case "COMPLETED":
                 return "Excellent! The cleaning mission was completed successfully. " +
-                       "The room has been cleaned to satisfaction (≥80%).";
+                       "The room achieved ≥80% cleaning (actual: " + String.format("%.2f%%", percentage) + ").";
             case "ACCEPTABLE":
                 return "The mission was partially successful. The room is cleaner but " +
-                       "did not reach the optimal goal (≥50% but <80%).";
+                       "did not reach the 80% goal (achieved: " + String.format("%.2f%%", percentage) + ").";
             default:
                 return "The mission failed. The robots were unable to clean the minimum " +
-                       "required amount (<50%) or all robots became inactive.";
+                       "required amount (achieved: " + String.format("%.2f%%", percentage) + ") or all robots became inactive.";
         }
     }
 }
