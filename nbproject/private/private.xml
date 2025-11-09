@@ -8,8 +8,10 @@
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/MainFrame.java</file>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/RoomPanel.java</file>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/StatisticsDialog.java</file>
-            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/SimulationPanel.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/RobotController.java</file>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/RobotService.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/PathfindingService.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/data/model/Robot.java</file>
         </group>
     </open-files>
 </project-private>
