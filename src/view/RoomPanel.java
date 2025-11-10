@@ -5,24 +5,23 @@ import data.model.Robot;
 import data.model.Room;
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * Panel for visualizing the room matrix with robots
+ * Panel for visualizing the room matrix with robots - Dark theme
  */
 public class RoomPanel extends JPanel {
-    // Colors for each cell state
-    public static final Color COLOR_CLEAN = new Color(240, 248, 255);        // Alice Blue
-    public static final Color COLOR_DIRTY = new Color(139, 69, 19);          // Saddle Brown
-    public static final Color COLOR_OBSTACLE = new Color(64, 64, 64);        // Dark Gray
-    public static final Color COLOR_TEMP_OBSTACLE = new Color(169, 169, 169); // Light Gray
-    public static final Color COLOR_RECHARGE = new Color(34, 139, 34);       // Forest Green
-    public static final Color COLOR_GRID = new Color(200, 200, 200);
     
-    // Robot colors (different color for each robot)
+    public static final Color COLOR_CLEAN = new Color(30, 40, 60);           
+    public static final Color COLOR_DIRTY = new Color(115, 64, 13);          
+    public static final Color COLOR_OBSTACLE = new Color(50, 50, 50);        
+    public static final Color COLOR_TEMP_OBSTACLE = new Color(100, 100, 100); 
+    public static final Color COLOR_RECHARGE = new Color(0, 255, 127);       
+    public static final Color COLOR_GRID = new Color(44, 116, 243);          
+    public static final Color BACKGROUND = new Color(16, 29, 65);            
+    
+    // Robot colors
     private static final Color[] ROBOT_COLORS = {
-        new Color(255, 69, 0),    // Red-Orange
+        new Color(255, 223, 0),    // Red-Orange
         new Color(30, 144, 255),  // Dodger Blue
         new Color(255, 215, 0),   // Gold
         new Color(138, 43, 226)   // Blue Violet
@@ -34,7 +33,7 @@ public class RoomPanel extends JPanel {
     private static final int MAX_CELL_SIZE = 80;
     
     public RoomPanel() {
-        setBackground(Color.WHITE);
+        setBackground(BACKGROUND);
         setPreferredSize(new Dimension(600, 600));
     }
     
@@ -53,7 +52,6 @@ public class RoomPanel extends JPanel {
         int maxRows = room.getRows();
         int maxCols = room.getCols();
         
-        // Calculate optimal cell size to fit the room
         int availableWidth = getWidth() > 0 ? getWidth() : 600;
         int availableHeight = getHeight() > 0 ? getHeight() : 600;
         
@@ -84,6 +82,7 @@ public class RoomPanel extends JPanel {
         
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         
         int offsetX = 20;
         int offsetY = 20;
@@ -99,8 +98,9 @@ public class RoomPanel extends JPanel {
             }
         }
         
-        // Draw grid lines
-        g2d.setColor(COLOR_GRID);
+        // Draw grid lines (subtle)
+        g2d.setColor(new Color(COLOR_GRID.getRed(), COLOR_GRID.getGreen(), COLOR_GRID.getBlue(), 100));
+        g2d.setStroke(new BasicStroke(1.5f));
         for (int i = 0; i <= room.getRows(); i++) {
             int y = offsetY + i * cellSize;
             g2d.drawLine(offsetX, y, offsetX + room.getCols() * cellSize, y);
@@ -126,9 +126,17 @@ public class RoomPanel extends JPanel {
         g2d.setColor(cellColor);
         g2d.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
         
-        // Draw state letter (smaller and lighter for background)
+        // Add subtle gradient for depth
+        GradientPaint gradient = new GradientPaint(
+            x, y, cellColor.brighter(),
+            x, y + cellSize, cellColor
+        );
+        g2d.setPaint(gradient);
+        g2d.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+        
+        // Draw state letter (smaller and semi-transparent)
         g2d.setColor(getTextColor(cell));
-        g2d.setFont(new Font("Arial", Font.PLAIN, cellSize / 4));
+        g2d.setFont(new Font("Segoe UI", Font.BOLD, cellSize / 4));
         FontMetrics fm = g2d.getFontMetrics();
         String text = String.valueOf(cell.getState());
         int textX = x + (cellSize - fm.stringWidth(text)) / 2;
@@ -138,56 +146,68 @@ public class RoomPanel extends JPanel {
     
     private void drawRobot(Graphics2D g2d, Robot robot, int x, int y) {
         if (!robot.isActive()) {
-            return; // Don't draw inactive robots
+            return;
         }
         
-        // Get robot color based on ID
         Color robotColor = ROBOT_COLORS[(robot.getId() - 1) % ROBOT_COLORS.length];
         
         int robotSize = (int)(cellSize * 0.7);
         int robotX = x + (cellSize - robotSize) / 2;
         int robotY = y + (cellSize - robotSize) / 2;
         
-        // Draw robot as circle with border
-        g2d.setColor(robotColor);
+        // Draw shadow
+        g2d.setColor(new Color(0, 0, 0, 50));
+        g2d.fillOval(robotX + 3, robotY + 3, robotSize, robotSize);
+        
+        // Draw robot circle with gradient
+        GradientPaint gradient = new GradientPaint(
+            robotX, robotY, robotColor.brighter(),
+            robotX, robotY + robotSize, robotColor.darker()
+        );
+        g2d.setPaint(gradient);
         g2d.fillOval(robotX, robotY, robotSize, robotSize);
         
-        // Draw border
-        g2d.setColor(robotColor.darker());
-        g2d.setStroke(new BasicStroke(2));
+        // Draw border (glow effect)
+        g2d.setColor(robotColor.brighter().brighter());
+        g2d.setStroke(new BasicStroke(2.5f));
         g2d.drawOval(robotX, robotY, robotSize, robotSize);
         
         // Draw robot ID
         g2d.setColor(Color.WHITE);
-        g2d.setFont(new Font("Arial", Font.BOLD, cellSize / 3));
+        g2d.setFont(new Font("Segoe UI", Font.BOLD, cellSize / 3));
         FontMetrics fm = g2d.getFontMetrics();
         String id = String.valueOf(robot.getId());
         int textX = x + (cellSize - fm.stringWidth(id)) / 2;
         int textY = y + (cellSize + fm.getAscent() - fm.getDescent()) / 2;
+        
+        // Text shadow
+        g2d.setColor(new Color(0, 0, 0, 150));
+        g2d.drawString(id, textX + 1, textY + 1);
+        g2d.setColor(Color.WHITE);
         g2d.drawString(id, textX, textY);
         
-        // Draw battery indicator (small bar below robot)
-        int barWidth = robotSize - 4;
-        int barHeight = 4;
-        int barX = robotX + 2;
-        int barY = robotY + robotSize - barHeight - 2;
+        // Draw battery indicator (modern bar)
+        int barWidth = robotSize - 6;
+        int barHeight = 5;
+        int barX = robotX + 3;
+        int barY = robotY + robotSize - barHeight - 3;
         
         // Background
-        g2d.setColor(Color.BLACK);
-        g2d.fillRect(barX, barY, barWidth, barHeight);
+        g2d.setColor(new Color(0, 0, 0, 180));
+        g2d.fillRoundRect(barX, barY, barWidth, barHeight, 3, 3);
         
         // Battery level
         int batteryWidth = (int)((robot.getBattery() / 20.0) * barWidth);
         Color batteryColor;
         if (robot.getBattery() <= 3) {
-            batteryColor = Color.RED;
+            batteryColor = new Color(231, 76, 60);
         } else if (robot.getBattery() <= 7) {
-            batteryColor = Color.YELLOW;
+            batteryColor = new Color(241, 196, 15);
         } else {
-            batteryColor = Color.GREEN;
+            batteryColor = new Color(46, 204, 113);
         }
         g2d.setColor(batteryColor);
-        g2d.fillRect(barX, barY, batteryWidth, barHeight);
+        g2d.fillRoundRect(barX, barY, batteryWidth, barHeight, 3, 3);
     }
     
     private Color getCellColor(Cell cell) {
@@ -198,26 +218,35 @@ public class RoomPanel extends JPanel {
             case 'O': return COLOR_OBSTACLE;
             case 'T': return COLOR_TEMP_OBSTACLE;
             case 'R': return COLOR_RECHARGE;
-            default: return Color.WHITE;
+            default: return BACKGROUND;
         }
     }
     
     private Color getTextColor(Cell cell) {
         char state = cell.getState();
-        // Use white text for dark backgrounds, but make it semi-transparent
-        if (state == 'S' || state == 'O' || state == 'R') {
-            return new Color(255, 255, 255, 100); // Semi-transparent white
-        }
-        return new Color(0, 0, 0, 100); // Semi-transparent black
+        // Semi-transparent white for all states
+        return new Color(255, 255, 255, 80);
     }
     
     private void drawEmptyMessage(Graphics g) {
-        String message = "No room loaded. Please load or create a room.";
-        g.setColor(Color.GRAY);
-        g.setFont(new Font("Arial", Font.PLAIN, 14));
-        FontMetrics fm = g.getFontMetrics();
-        int x = (getWidth() - fm.stringWidth(message)) / 2;
-        int y = getHeight() / 2;
-        g.drawString(message, x, y);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        
+        String message = "No room loaded";
+        String submessage = "Please load or create a room to begin";
+        
+        g2d.setColor(new Color(93, 173, 255, 150)); // COLOR_5 semi-transparent
+        g2d.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        FontMetrics fm1 = g2d.getFontMetrics();
+        int x1 = (getWidth() - fm1.stringWidth(message)) / 2;
+        int y1 = getHeight() / 2 - 15;
+        g2d.drawString(message, x1, y1);
+        
+        g2d.setColor(new Color(200, 200, 200, 150));
+        g2d.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        FontMetrics fm2 = g2d.getFontMetrics();
+        int x2 = (getWidth() - fm2.stringWidth(submessage)) / 2;
+        int y2 = getHeight() / 2 + 10;
+        g2d.drawString(submessage, x2, y2);
     }
 }

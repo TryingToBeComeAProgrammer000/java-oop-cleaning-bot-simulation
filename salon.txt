@@ -21,22 +21,3 @@ S S S L S S S L L S
 O L O S T S S L S L
 S S L S S S S S L R
 
-
-
-S S L L S L S T S
-L L T T L S L T T
-L O L L O S T L L
-S L L S L T T L S
-O S S L L O R L L
-L L L O O R T S L
-L L O T O O R L S
-S R L T S S S S S
-O S S O L O S T L
-
-L O L L S L S S L
-L S T T S L O S L
-S L L T S S L L T
-S S L L O R T L S
-O L T L O L S L T
-S S L S S T O O S
-L T O O L L S L L

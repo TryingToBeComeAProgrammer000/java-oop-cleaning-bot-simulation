@@ -4,14 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/TemporaryObstacleManager.java</file>
-            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/CreateRoomDialog.java</file>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/MainFrame.java</file>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/RoomPanel.java</file>
-            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/StatisticsDialog.java</file>
-            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/RobotController.java</file>
-            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/RobotService.java</file>
-            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/PathfindingService.java</file>
             <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/data/model/Robot.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/GUISimulationController.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/RandomRoomDialog.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/CreateRoomDialog.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/ResultsDialog.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/view/StatisticsDialog.java</file>
+            <file>file:/C:/Users/uyv31/Documents/NetBeansProjects/java-oop-cleaningbot-simulation/src/service/MultiRobotManager.java</file>
         </group>
     </open-files>
 </project-private>

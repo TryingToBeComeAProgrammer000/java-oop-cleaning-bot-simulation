@@ -3,12 +3,18 @@ package view;
 import data.model.Room;
 import service.RoomService;
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 
-/**
- * Dialog for generating a random room with default percentages
- */
 public class RandomRoomDialog extends JDialog {
+    private static final Color COLOR_1 = new Color(20, 15, 7);
+    private static final Color COLOR_2 = new Color(16, 29, 65);
+    private static final Color COLOR_3 = new Color(14, 72, 150);
+    private static final Color COLOR_4 = new Color(44, 116, 243);
+    private static final Color COLOR_5 = new Color(93, 173, 255);
+    private static final Color TEXT_PRIMARY = new Color(255, 255, 255);
+    private static final Color TEXT_SECONDARY = new Color(200, 200, 200);
+    
     private RoomService roomService;
     private Room createdRoom;
     
@@ -25,72 +31,81 @@ public class RandomRoomDialog extends JDialog {
     }
     
     private void initializeDialog() {
-        setSize(400, 300);
+        setSize(400, 280);
         setLocationRelativeTo(getParent());
         setLayout(new BorderLayout(10, 10));
+        getContentPane().setBackground(COLOR_2);
     }
     
     private void createComponents() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(COLOR_2);
         
         // Title
         JLabel titleLabel = new JLabel("Generate Random Room");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
+        titleLabel.setForeground(TEXT_PRIMARY);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(titleLabel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        
-        // Subtitle
-        JLabel subtitleLabel = new JLabel("With Default Percentages");
-        subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-        subtitleLabel.setForeground(Color.GRAY);
-        subtitleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(subtitleLabel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
         // Dimensions panel
         JPanel dimensionsPanel = new JPanel(new GridLayout(2, 2, 10, 10));
-        dimensionsPanel.setBorder(BorderFactory.createTitledBorder("Room Dimensions"));
+        dimensionsPanel.setBackground(COLOR_3);
+        dimensionsPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(COLOR_4, 1),
+            BorderFactory.createTitledBorder(
+                BorderFactory.createEmptyBorder(5, 10, 5, 10),
+                "Room Dimensions",
+                TitledBorder.LEFT,
+                TitledBorder.TOP,
+                new Font("Segoe UI", Font.BOLD, 12),
+                COLOR_5
+            )
+        ));
         dimensionsPanel.setMaximumSize(new Dimension(350, 100));
         
-        dimensionsPanel.add(new JLabel("Rows:"));
-        rowsField = new JTextField("8");
+        JLabel rowsLabel = new JLabel("Rows:");
+        rowsLabel.setForeground(TEXT_PRIMARY);
+        dimensionsPanel.add(rowsLabel);
+        rowsField = createStyledTextField("8");
         dimensionsPanel.add(rowsField);
         
-        dimensionsPanel.add(new JLabel("Columns:"));
-        colsField = new JTextField("10");
+        JLabel colsLabel = new JLabel("Columns:");
+        colsLabel.setForeground(TEXT_PRIMARY);
+        dimensionsPanel.add(colsLabel);
+        colsField = createStyledTextField("10");
         dimensionsPanel.add(colsField);
         
         mainPanel.add(dimensionsPanel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
         
-        // Default percentages info
-        JPanel infoPanel = new JPanel();
-        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        infoPanel.setBorder(BorderFactory.createTitledBorder("Default Distribution"));
-        infoPanel.setMaximumSize(new Dimension(350, 150));
-        
-        infoPanel.add(createInfoLabel("- Clean (L): 40%"));
-        infoPanel.add(createInfoLabel("- Dirty (S): 30%"));
-        infoPanel.add(createInfoLabel("- Permanent Obstacles (O): 15%"));
-        infoPanel.add(createInfoLabel("- Temporary Obstacles (T): 15%"));
-        infoPanel.add(createInfoLabel("- Recharge Points (R): 1-4 (random)"));
-        
-        mainPanel.add(infoPanel);
-        mainPanel.add(Box.createVerticalGlue());
-        
         // Buttons panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        buttonPanel.setBackground(COLOR_2);
         
         JButton generateButton = new JButton("Generate");
         generateButton.setBackground(new Color(155, 89, 182));
-        generateButton.setForeground(Color.WHITE);
-        generateButton.setFont(new Font("Arial", Font.BOLD, 12));
+        generateButton.setForeground(Color.BLACK);
+        generateButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        generateButton.setFocusPainted(false);
+        generateButton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(155, 89, 182).brighter(), 1),
+            BorderFactory.createEmptyBorder(8, 20, 8, 20)
+        ));
         generateButton.addActionListener(e -> generateRoom());
         
         JButton cancelButton = new JButton("Cancel");
+        cancelButton.setBackground(COLOR_3);
+        cancelButton.setForeground(Color.BLACK);
+        cancelButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        cancelButton.setFocusPainted(false);
+        cancelButton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(COLOR_4, 1),
+            BorderFactory.createEmptyBorder(8, 20, 8, 20)
+        ));
         cancelButton.addActionListener(e -> dispose());
         
         buttonPanel.add(generateButton);
@@ -100,16 +115,30 @@ public class RandomRoomDialog extends JDialog {
         add(buttonPanel, BorderLayout.SOUTH);
     }
     
+    private JTextField createStyledTextField(String defaultValue) {
+        JTextField field = new JTextField(defaultValue);
+        field.setBackground(COLOR_1);
+        field.setForeground(TEXT_PRIMARY);
+        field.setCaretColor(TEXT_PRIMARY);
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(COLOR_4, 1),
+            BorderFactory.createEmptyBorder(5, 8, 5, 8)
+        ));
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        return field;
+    }
+    
     private JLabel createInfoLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Arial", Font.PLAIN, 12));
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setForeground(TEXT_PRIMARY);
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        label.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
         return label;
     }
     
     private void generateRoom() {
         try {
-            // Parse dimensions
             int rows = Integer.parseInt(rowsField.getText().trim());
             int cols = Integer.parseInt(colsField.getText().trim());
             
@@ -130,7 +159,6 @@ public class RandomRoomDialog extends JDialog {
                 }
             }
             
-            // Generate room with default percentages
             createdRoom = roomService.generateRandomRoom(rows, cols);
             
             JOptionPane.showMessageDialog(this,

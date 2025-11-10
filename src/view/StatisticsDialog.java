@@ -3,12 +3,18 @@ package view;
 import data.model.Room;
 import service.RoomService;
 import javax.swing.*;
+import javax.swing.border.*;
 import java.awt.*;
 
-/**
- * Dialog for displaying room statistics
- */
 public class StatisticsDialog extends JDialog {
+    private static final Color COLOR_1 = new Color(20, 15, 7);
+    private static final Color COLOR_2 = new Color(16, 29, 65);
+    private static final Color COLOR_3 = new Color(14, 72, 150);
+    private static final Color COLOR_4 = new Color(44, 116, 243);
+    private static final Color COLOR_5 = new Color(93, 173, 255);
+    private static final Color TEXT_PRIMARY = new Color(255, 255, 255);
+    private static final Color TEXT_SECONDARY = new Color(200, 200, 200);
+    
     private Room room;
     private RoomService roomService;
     
@@ -25,16 +31,19 @@ public class StatisticsDialog extends JDialog {
         setSize(500, 500);
         setLocationRelativeTo(getParent());
         setLayout(new BorderLayout(10, 10));
+        getContentPane().setBackground(COLOR_2);
     }
     
     private void createComponents() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        mainPanel.setBackground(COLOR_2);
         
         // Title
         JLabel titleLabel = new JLabel("Room Statistics");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        titleLabel.setForeground(TEXT_PRIMARY);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         mainPanel.add(titleLabel);
         mainPanel.add(Box.createRigidArea(new Dimension(0, 20)));
@@ -88,8 +97,18 @@ public class StatisticsDialog extends JDialog {
         
         // Close button
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBackground(COLOR_2);
+        
         JButton closeButton = new JButton("Close");
-        closeButton.setPreferredSize(new Dimension(100, 30));
+        closeButton.setPreferredSize(new Dimension(100, 35));
+        closeButton.setBackground(COLOR_3);
+        closeButton.setForeground(Color.BLACK);
+        closeButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        closeButton.setFocusPainted(false);
+        closeButton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(COLOR_4, 1),
+            BorderFactory.createEmptyBorder(8, 20, 8, 20)
+        ));
         closeButton.addActionListener(e -> dispose());
         buttonPanel.add(closeButton);
         
@@ -100,13 +119,17 @@ public class StatisticsDialog extends JDialog {
     private JPanel createStatPanel(String title) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createTitledBorder(
-            BorderFactory.createLineBorder(new Color(41, 128, 185), 2),
-            title,
-            javax.swing.border.TitledBorder.LEFT,
-            javax.swing.border.TitledBorder.TOP,
-            new Font("Arial", Font.BOLD, 14),
-            new Color(41, 128, 185)
+        panel.setBackground(COLOR_3);
+        panel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(COLOR_4, 1),
+            BorderFactory.createTitledBorder(
+                BorderFactory.createEmptyBorder(5, 10, 5, 10),
+                title,
+                TitledBorder.LEFT,
+                TitledBorder.TOP,
+                new Font("Segoe UI", Font.BOLD, 13),
+                COLOR_5
+            )
         ));
         panel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
         return panel;
@@ -114,7 +137,8 @@ public class StatisticsDialog extends JDialog {
     
     private JLabel createStatRow(String label, String value) {
         JLabel statLabel = new JLabel(label + " " + value);
-        statLabel.setFont(new Font("Arial", Font.PLAIN, 13));
+        statLabel.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        statLabel.setForeground(TEXT_PRIMARY);
         statLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         statLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         return statLabel;
@@ -158,15 +182,15 @@ public class StatisticsDialog extends JDialog {
     private Color getDifficultyColor(String difficulty) {
         switch (difficulty) {
             case "Easy":
-                return new Color(46, 204, 113); // Green
+                return new Color(46, 204, 113);
             case "Medium":
-                return new Color(241, 196, 15); // Yellow
+                return new Color(241, 196, 15);
             case "Hard":
-                return new Color(230, 126, 34); // Orange
+                return new Color(230, 126, 34);
             case "Very Hard":
-                return new Color(231, 76, 60);  // Red
+                return new Color(231, 76, 60);
             default:
-                return Color.BLACK;
+                return TEXT_PRIMARY;
         }
     }
 }

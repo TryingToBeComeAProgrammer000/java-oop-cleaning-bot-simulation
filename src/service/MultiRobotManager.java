@@ -92,7 +92,6 @@ public class MultiRobotManager {
             robots.add(robot);
             
             logger.logInitialization(robot);
-            System.out.println("Robot #" + i + " initialized at " + position);
         }
         
         logger.log("=== " + robots.size() + " ROBOT(S) READY ===\n");

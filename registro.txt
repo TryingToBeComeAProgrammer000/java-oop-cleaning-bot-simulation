@@ -1,320 +1,305 @@
 ========================================
   ROBOT CLEANING SIMULATION LOG
-  Started at: 2025-11-08 22:05:15
+  Started at: 2025-11-09 20:45:43
 ========================================
 
-[22:05:15] === INITIALIZING 4 ROBOT(S) ===
-[22:05:15] Robot #1 - INITIALIZED at position (1,0) | Battery: 10
-[22:05:15] Robot #2 - INITIALIZED at position (8,1) | Battery: 10
-[22:05:15] Robot #3 - INITIALIZED at position (4,6) | Battery: 10
-[22:05:15] Robot #4 - INITIALIZED at position (1,6) | Battery: 10
-[22:05:15] === 4 ROBOT(S) READY ===
+[20:45:43] === INITIALIZING 4 ROBOT(S) ===
+[20:45:43] Robot #1 - INITIALIZED at position (1,8) | Battery: 10
+[20:45:43] Robot #2 - INITIALIZED at position (3,4) | Battery: 10
+[20:45:43] Robot #3 - INITIALIZED at position (5,5) | Battery: 10
+[20:45:43] Robot #4 - INITIALIZED at position (6,6) | Battery: 10
+[20:45:43] === 4 ROBOT(S) READY ===
 
-[22:05:15] 
+[20:45:43] 
 === SIMULATION START ===
-[22:05:15] Initial dirty cells: 50
-[22:05:15] Robots deployed: 4
-[22:05:15] ========================
+[20:45:43] Initial dirty cells: 50
+[20:45:43] Robots deployed: 4
+[20:45:43] ========================
 
-[22:05:16] Robot #1 - Cleaned cell at (1,0) | Battery: 10 | Total cleaned: 1
-[22:05:16] Robot #1 - Moved from (1,0) to (2,0) | Battery: 9
-[22:05:16] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 10
-[22:05:16] Robot #2 - Moved from (8,1) to (7,1) | Battery: 9
-[22:05:16] Robot #3 - Cleaned cell at (4,6) | Battery: 10 | Total cleaned: 1
-[22:05:16] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 10
-[22:05:16] Robot #3 - Moved from (4,6) to (4,5) | Battery: 9
-[22:05:16] Robot #4 - Cleaned cell at (1,6) | Battery: 10 | Total cleaned: 1
-[22:05:16] Robot #4 - Moved from (1,6) to (0,6) | Battery: 9
-[22:05:16] Robot #1 - Cleaned cell at (2,0) | Battery: 9 | Total cleaned: 2
-[22:05:16] Robot #1 - Moved from (2,0) to (3,0) | Battery: 8
-[22:05:16] Robot #2 - Cleaned cell at (7,1) | Battery: 9 | Total cleaned: 1
-[22:05:16] Robot #2 - Moved from (7,1) to (7,2) | Battery: 8
-[22:05:16] Robot #3 - Cleaned cell at (4,5) | Battery: 9 | Total cleaned: 2
-[22:05:16] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 9
-[22:05:16] Robot #3 - Moved from (4,5) to (5,5) | Battery: 8
-[22:05:16] Robot #4 - Cleaned cell at (0,6) | Battery: 9 | Total cleaned: 2
-[22:05:16] Robot #4 - Moved from (0,6) to (0,5) | Battery: 8
-[22:05:17] Robot #1 - Cleaned cell at (3,0) | Battery: 8 | Total cleaned: 3
-[22:05:17] Robot #1 - Moved from (3,0) to (3,1) | Battery: 7
-[22:05:17] Robot #2 - Cleaned cell at (7,2) | Battery: 8 | Total cleaned: 2
-[22:05:17] Robot #2 - Moved from (7,2) to (7,1) | Battery: 7
-[22:05:17] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 8
-[22:05:17] Robot #3 - Moved from (5,5) to (6,5) | Battery: 7
-[22:05:17] Robot #4 - Cleaned cell at (0,5) | Battery: 8 | Total cleaned: 3
-[22:05:17] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 8
-[22:05:17] Robot #4 - Moved from (0,5) to (1,5) | Battery: 7
-[22:05:17] Robot #1 - Cleaned cell at (3,1) | Battery: 7 | Total cleaned: 4
-[22:05:17] Robot #1 - Moved from (3,1) to (3,2) | Battery: 6
-[22:05:17] Robot #2 - Moved from (7,1) to (7,0) | Battery: 6
-[22:05:17] Robot #3 - Cleaned cell at (6,5) | Battery: 7 | Total cleaned: 3
-[22:05:17] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 7
-[22:05:17] Robot #3 - Moved from (6,5) to (7,5) | Battery: 6
-[22:05:17] Robot #4 - Cleaned cell at (1,5) | Battery: 7 | Total cleaned: 4
-[22:05:17] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 7
-[22:05:17] Robot #4 - Moved from (1,5) to (1,6) | Battery: 6
-[22:05:18] Robot #1 - Cleaned cell at (3,2) | Battery: 6 | Total cleaned: 5
-[22:05:18] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 6
-[22:05:18] Robot #1 - Moved from (3,2) to (4,2) | Battery: 5
-[22:05:18] Robot #2 - Cleaned cell at (7,0) | Battery: 6 | Total cleaned: 3
-[22:05:18] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 6
-[22:05:18] Robot #2 - Moved from (7,0) to (6,0) | Battery: 5
-[22:05:18] Robot #3 - Cleaned cell at (7,5) | Battery: 6 | Total cleaned: 4
-[22:05:18] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 6
-[22:05:18] Robot #3 - Moved from (7,5) to (7,6) | Battery: 5
-[22:05:18] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 6
-[22:05:18] Robot #4 - Moved from (1,6) to (2,6) | Battery: 5
-[22:05:19] Robot #1 - Cleaned cell at (4,2) | Battery: 5 | Total cleaned: 6
-[22:05:19] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 5
-[22:05:19] Robot #1 - Moved from (4,2) to (5,2) | Battery: 4
-[22:05:19] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 5
-[22:05:19] Robot #2 - Moved from (6,0) to (6,1) | Battery: 4
-[22:05:19] Robot #3 - Cleaned cell at (7,6) | Battery: 5 | Total cleaned: 5
-[22:05:19] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 5
-[22:05:19] Robot #3 - Moved from (7,6) to (7,7) | Battery: 4
-[22:05:19] Robot #4 - Cleaned cell at (2,6) | Battery: 5 | Total cleaned: 5
-[22:05:19] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 5
-[22:05:19] Robot #4 - Moved from (2,6) to (3,6) | Battery: 4
-[22:05:19] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
-[22:05:19] Robot #1 - Moved from (5,2) to (5,1) | Battery: 3
-[22:05:19] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
-[22:05:19] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 4
-[22:05:19] Robot #3 - Moved from (7,7) to (7,8) | Battery: 3
-[22:05:19] Robot #4 - Cleaned cell at (3,6) | Battery: 4 | Total cleaned: 6
-[22:05:19] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 4
-[22:05:19] Robot #4 - Moved from (3,6) to (4,6) | Battery: 3
-[22:05:20] Robot #1 - Recharging at (5,1) | Battery: 3 → 13
-[22:05:20] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
-[22:05:20] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 3
-[22:05:20] Robot #3 - Moved from (7,8) to (6,8) | Battery: 2
-[22:05:20] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 3
-[22:05:20] Robot #4 - Moved from (4,6) to (4,7) | Battery: 2
-[22:05:20] Robot #1 - Recharging at (5,1) | Battery: 10 → 20
-[22:05:20] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
-[22:05:20] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 2
-[22:05:20] Robot #3 - Moved from (6,8) to (5,8) | Battery: 1
-[22:05:20] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 2
-[22:05:20] Robot #4 - Moved from (4,7) to (5,7) | Battery: 1
-[22:05:21] Robot #1 - Fully recharged, resuming cleaning
-[22:05:21] Robot #1 - Leaving recharge point toward target
-[22:05:21] Robot #1 - Moved from (5,1) to (4,1) | Battery: 19
-[22:05:21] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
-[22:05:21] Robot #2 - Moved from (6,1) to (5,1) | Battery: 3
-[22:05:21] Robot #3 - Cleaned cell at (5,8) | Battery: 1 | Total cleaned: 6
-[22:05:21] Robot #3 - DEACTIVATED at (5,8) | Reason: Insufficient battery to reach recharge | Total cleaned: 6
-[22:05:21] Robot #3 - DEACTIVATED at (5,8) | Reason: Battery depleted | Total cleaned: 6
-[22:05:21] Robot #4 - Recharging at (5,7) | Battery: 1 → 11
-[22:05:22] Robot #1 - Cleaned cell at (4,1) | Battery: 19 | Total cleaned: 7
-[22:05:22] Robot #1 - Moved from (4,1) to (3,1) | Battery: 18
-[22:05:22] Robot #2 - Recharging at (5,1) | Battery: 3 → 13
-[22:05:22] Robot #4 - Recharging at (5,7) | Battery: 10 → 20
-[22:05:22] Robot #1 - Moved from (3,1) to (3,0) | Battery: 17
-[22:05:22] Robot #2 - Recharging at (5,1) | Battery: 10 → 20
-[22:05:22] Robot #4 - Fully recharged, resuming cleaning
-[22:05:22] Robot #4 - Leaving recharge point toward target
-[22:05:22] Robot #4 - Moved from (5,7) to (4,7) | Battery: 19
-[22:05:23] Robot #1 - Moved from (3,0) to (2,0) | Battery: 16
-[22:05:23] Robot #2 - Fully recharged, resuming cleaning
-[22:05:23] Robot #2 - Leaving recharge point toward target
-[22:05:23] Robot #2 - Moved from (5,1) to (4,1) | Battery: 19
-[22:05:23] Robot #4 - Moved from (4,7) to (4,8) | Battery: 18
-[22:05:23] Robot #1 - Moved from (2,0) to (1,0) | Battery: 15
-[22:05:23] Robot #2 - Moved from (4,1) to (5,1) | Battery: 18
-[22:05:23] Robot #4 - Cleaned cell at (4,8) | Battery: 18 | Total cleaned: 7
-[22:05:23] Robot #4 - Moved from (4,8) to (4,7) | Battery: 17
-[22:05:24] Robot #1 - Moved from (1,0) to (0,0) | Battery: 14
-[22:05:24] Robot #2 - Fully recharged, resuming cleaning
-[22:05:24] Robot #2 - Leaving recharge point toward target
-[22:05:24] Robot #2 - Moved from (5,1) to (4,1) | Battery: 17
-[22:05:24] Robot #4 - Moved from (4,7) to (3,7) | Battery: 16
-[22:05:25] Robot #1 - Moved from (0,0) to (0,1) | Battery: 13
-[22:05:25] Robot #2 - Moved from (4,1) to (4,0) | Battery: 16
-[22:05:25] Robot #4 - Moved from (3,7) to (2,7) | Battery: 15
-[22:05:25] Robot #1 - Cleaned cell at (0,1) | Battery: 13 | Total cleaned: 8
-[22:05:25] Robot #1 - Moved from (0,1) to (0,2) | Battery: 12
-[22:05:25] Robot #2 - Cleaned cell at (4,0) | Battery: 16 | Total cleaned: 4
-[22:05:25] Robot #2 - Moved from (4,0) to (4,1) | Battery: 15
-[22:05:25] Robot #4 - Cleaned cell at (2,7) | Battery: 15 | Total cleaned: 8
-[22:05:25] Robot #4 - Moved from (2,7) to (2,8) | Battery: 14
-[22:05:26] Robot #1 - Cleaned cell at (0,2) | Battery: 12 | Total cleaned: 9
-[22:05:26] Robot #1 - Moved from (0,2) to (1,2) | Battery: 11
-[22:05:26] Robot #2 - Moved from (4,1) to (5,1) | Battery: 14
-[22:05:26] Robot #4 - Cleaned cell at (2,8) | Battery: 14 | Total cleaned: 9
-[22:05:26] Robot #4 - Moved from (2,8) to (2,9) | Battery: 13
-[22:05:26] Robot #1 - Cleaned cell at (1,2) | Battery: 11 | Total cleaned: 10
-[22:05:26] Robot #1 - Moved from (1,2) to (2,2) | Battery: 10
-[22:05:26] Robot #2 - Recharging at (5,1) | Battery: 10 → 20
-[22:05:26] Robot #4 - Cleaned cell at (2,9) | Battery: 13 | Total cleaned: 10
-[22:05:26] Robot #4 - Moved from (2,9) to (1,9) | Battery: 12
-[22:05:27] Robot #1 - Moved from (2,2) to (3,2) | Battery: 9
-[22:05:27] Robot #2 - Fully recharged, resuming cleaning
-[22:05:27] Robot #2 - Leaving recharge point toward target
-[22:05:27] Robot #2 - Moved from (5,1) to (5,2) | Battery: 19
-[22:05:27] Robot #4 - Moved from (1,9) to (0,9) | Battery: 11
-[22:05:28] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 9
-[22:05:28] Robot #1 - Moved from (3,2) to (4,2) | Battery: 8
-[22:05:28] Robot #2 - Moved from (5,2) to (5,3) | Battery: 18
-[22:05:28] Robot #4 - Cleaned cell at (0,9) | Battery: 11 | Total cleaned: 11
-[22:05:28] Robot #4 - Moved from (0,9) to (1,9) | Battery: 10
-[22:05:28] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 8
-[22:05:28] Robot #1 - Moved from (4,2) to (5,2) | Battery: 7
-[22:05:28] Robot #2 - Moved from (5,3) to (5,4) | Battery: 17
-[22:05:28] Robot #4 - Moved from (1,9) to (1,8) | Battery: 9
-[22:05:29] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 7
-[22:05:29] Robot #1 - Moved from (5,2) to (5,1) | Battery: 6
-[22:05:29] Robot #2 - Cleaned cell at (5,4) | Battery: 17 | Total cleaned: 5
-[22:05:29] Robot #2 - Moved from (5,4) to (6,4) | Battery: 16
-[22:05:29] Robot #4 - Cleaned cell at (1,8) | Battery: 9 | Total cleaned: 12
-[22:05:29] Robot #4 - Moved from (1,8) to (1,7) | Battery: 8
-[22:05:29] Robot #1 - Recharging at (5,1) | Battery: 6 → 16
-[22:05:29] Robot #2 - Moved from (6,4) to (6,5) | Battery: 15
-[22:05:29] Robot #4 - Cleaned cell at (1,7) | Battery: 8 | Total cleaned: 13
-[22:05:29] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 8
-[22:05:29] Robot #4 - Moved from (1,7) to (2,7) | Battery: 7
-[22:05:30] Robot #1 - Recharging at (5,1) | Battery: 10 → 20
-[22:05:30] Robot #2 - Moved from (6,5) to (7,5) | Battery: 14
-[22:05:30] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 7
-[22:05:30] Robot #4 - Moved from (2,7) to (3,7) | Battery: 6
-[22:05:31] Robot #1 - Fully recharged, resuming cleaning
-[22:05:31] Robot #1 - Leaving recharge point toward target
-[22:05:31] Robot #1 - Moved from (5,1) to (5,2) | Battery: 19
-[22:05:31] Robot #2 - Moved from (7,5) to (8,5) | Battery: 13
-[22:05:31] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 6
-[22:05:31] Robot #4 - Moved from (3,7) to (4,7) | Battery: 5
-[22:05:31] Robot #1 - Moved from (5,2) to (4,2) | Battery: 18
-[22:05:31] Robot #2 - Cleaned cell at (8,5) | Battery: 13 | Total cleaned: 6
-[22:05:31] Robot #2 - Moved from (8,5) to (9,5) | Battery: 12
-[22:05:31] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 5
-[22:05:31] Robot #4 - Moved from (4,7) to (5,7) | Battery: 4
-[22:05:32] Robot #1 - Moved from (4,2) to (3,2) | Battery: 17
-[22:05:32] Robot #2 - Cleaned cell at (9,5) | Battery: 12 | Total cleaned: 7
-[22:05:32] Robot #2 - Moved from (9,5) to (9,4) | Battery: 11
-[22:05:32] Robot #4 - Recharging at (5,7) | Battery: 4 → 14
-[22:05:32] Robot #1 - Moved from (3,2) to (3,3) | Battery: 16
-[22:05:32] Robot #2 - Cleaned cell at (9,4) | Battery: 11 | Total cleaned: 8
-[22:05:32] Robot #2 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 11
-[22:05:32] Robot #2 - Moved from (9,4) to (9,5) | Battery: 10
-[22:05:32] Robot #4 - Recharging at (5,7) | Battery: 10 → 20
-[22:05:33] Robot #1 - Cleaned cell at (3,3) | Battery: 16 | Total cleaned: 11
-[22:05:33] Robot #1 - Moved from (3,3) to (3,2) | Battery: 15
-[22:05:33] Robot #2 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 10
-[22:05:33] Robot #2 - Moved from (9,5) to (9,6) | Battery: 9
-[22:05:33] Robot #4 - Fully recharged, resuming cleaning
-[22:05:33] Robot #4 - Leaving recharge point toward target
-[22:05:33] Robot #4 - Moved from (5,7) to (5,6) | Battery: 19
-[22:05:34] Robot #1 - Moved from (3,2) to (4,2) | Battery: 14
-[22:05:34] Robot #2 - Cleaned cell at (9,6) | Battery: 9 | Total cleaned: 9
-[22:05:34] Robot #2 - Moved from (9,6) to (9,7) | Battery: 8
-[22:05:34] Robot #4 - Moved from (5,6) to (6,6) | Battery: 18
-[22:05:34] Robot #1 - Moved from (4,2) to (5,2) | Battery: 13
-[22:05:34] Robot #2 - Cleaned cell at (9,7) | Battery: 8 | Total cleaned: 10
-[22:05:34] Robot #2 - Moved from (9,7) to (8,7) | Battery: 7
-[22:05:34] Robot #4 - Cleaned cell at (6,6) | Battery: 18 | Total cleaned: 14
-[22:05:34] Robot #4 - Moved from (6,6) to (7,6) | Battery: 17
-[22:05:35] Robot #1 - Moved from (5,2) to (5,3) | Battery: 12
-[22:05:35] Robot #2 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 7
-[22:05:35] Robot #2 - Moved from (8,7) to (8,6) | Battery: 6
-[22:05:35] Robot #4 - Moved from (7,6) to (7,5) | Battery: 16
-[22:05:35] Robot #1 - Moved from (5,3) to (6,3) | Battery: 11
-[22:05:35] Robot #2 - Cleaned cell at (8,6) | Battery: 6 | Total cleaned: 11
-[22:05:35] Robot #2 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 6
-[22:05:35] Robot #2 - Moved from (8,6) to (7,6) | Battery: 5
-[22:05:35] Robot #4 - Moved from (7,5) to (7,4) | Battery: 15
-[22:05:36] Robot #1 - Cleaned cell at (6,3) | Battery: 11 | Total cleaned: 12
-[22:05:36] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 11
-[22:05:36] Robot #1 - Moved from (6,3) to (5,3) | Battery: 10
-[22:05:36] Robot #2 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 5
-[22:05:36] Robot #2 - Moved from (7,6) to (6,6) | Battery: 4
-[22:05:36] Robot #4 - Cleaned cell at (7,4) | Battery: 15 | Total cleaned: 15
-[22:05:36] Robot #4 - Moved from (7,4) to (8,4) | Battery: 14
-[22:05:37] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 10
-[22:05:37] Robot #1 - Moved from (5,3) to (5,2) | Battery: 9
-[22:05:37] Robot #2 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 4
-[22:05:37] Robot #2 - Moved from (6,6) to (5,6) | Battery: 3
-[22:05:37] Robot #4 - Moved from (8,4) to (8,3) | Battery: 13
-[22:05:37] Robot #1 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 9
-[22:05:37] Robot #1 - Moved from (5,2) to (5,1) | Battery: 8
-[22:05:37] Robot #2 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 3
-[22:05:37] Robot #2 - Moved from (5,6) to (5,7) | Battery: 2
-[22:05:37] Robot #4 - Cleaned cell at (8,3) | Battery: 13 | Total cleaned: 16
-[22:05:37] Robot #4 - Moved from (8,3) to (9,3) | Battery: 12
-[22:05:38] Robot #1 - Recharging at (5,1) | Battery: 8 → 18
-[22:05:38] Robot #2 - Recharging at (5,7) | Battery: 2 → 12
-[22:05:38] Robot #4 - Cleaned cell at (9,3) | Battery: 12 | Total cleaned: 17
-[22:05:38] Robot #4 - Moved from (9,3) to (9,2) | Battery: 11
-[22:05:38] Robot #1 - Fully recharged, resuming cleaning
-[22:05:38] Robot #1 - Leaving recharge point toward target
-[22:05:38] Robot #1 - Moved from (5,1) to (6,1) | Battery: 17
-[22:05:38] Robot #2 - Recharging at (5,7) | Battery: 10 → 20
-[22:05:38] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 11
-[22:05:38] Robot #4 - Moved from (9,2) to (9,3) | Battery: 10
-[22:05:39] Robot #1 - Moved from (6,1) to (7,1) | Battery: 16
-[22:05:39] Robot #2 - Fully recharged, resuming cleaning
-[22:05:39] Robot #2 - Leaving recharge point toward target
-[22:05:39] Robot #2 - Moved from (5,7) to (5,6) | Battery: 19
-[22:05:39] Robot #4 - Moved from (9,3) to (9,2) | Battery: 9
-[22:05:40] Robot #1 - Moved from (7,1) to (8,1) | Battery: 15
-[22:05:40] Robot #2 - Moved from (5,6) to (6,6) | Battery: 18
-[22:05:40] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 9
-[22:05:40] Robot #4 - Moved from (9,2) to (9,3) | Battery: 8
-[22:05:40] Robot #1 - Moved from (8,1) to (9,1) | Battery: 14
-[22:05:40] Robot #2 - Moved from (6,6) to (7,6) | Battery: 17
-[22:05:40] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 8
-[22:05:40] Robot #4 - Moved from (9,3) to (8,3) | Battery: 7
-[22:05:41] Robot #1 - Cleaned cell at (9,1) | Battery: 14 | Total cleaned: 13
-[22:05:41] Robot #1 - Moved from (9,1) to (9,0) | Battery: 13
-[22:05:41] Robot #2 - Moved from (7,6) to (7,7) | Battery: 16
-[22:05:41] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 7
-[22:05:41] Robot #4 - Moved from (8,3) to (7,3) | Battery: 6
-[22:05:41] Robot #1 - Cleaned cell at (9,0) | Battery: 13 | Total cleaned: 14
-[22:05:41] Robot #2 - Moved from (7,7) to (7,8) | Battery: 15
-[22:05:41] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 6
-[22:05:41] Robot #4 - Moved from (7,3) to (6,3) | Battery: 5
-[22:05:42] Robot #2 - Moved from (7,8) to (7,9) | Battery: 14
-[22:05:42] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 5
-[22:05:42] Robot #4 - Moved from (6,3) to (5,3) | Battery: 4
-[22:05:43] Robot #2 - Cleaned cell at (7,9) | Battery: 14 | Total cleaned: 12
-[22:05:43] Robot #2 - Moved from (7,9) to (8,9) | Battery: 13
-[22:05:43] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
-[22:05:43] Robot #4 - Moved from (5,3) to (5,2) | Battery: 3
-[22:05:43] Robot #2 - Moved from (8,9) to (8,8) | Battery: 12
-[22:05:43] Robot #4 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 3
-[22:05:43] Robot #4 - Moved from (5,2) to (5,1) | Battery: 2
-[22:05:44] Robot #1 - Moved from (9,0) to (9,1) | Battery: 12
-[22:05:44] Robot #2 - Cleaned cell at (8,8) | Battery: 12 | Total cleaned: 13
-[22:05:44] Robot #4 - Recharging at (5,1) | Battery: 2 → 12
-[22:05:44] 
-ALL CELLS CLEANED (100%) - MISSION ENDING
-[22:05:44] 
+[20:45:43] Robot #1 - Cleaned cell at (1,8) | Battery: 10 | Total cleaned: 1
+[20:45:43] Robot #1 - Moved from (1,8) to (1,7) | Battery: 9
+[20:45:43] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 10
+[20:45:43] Robot #2 - Moved from (3,4) to (4,4) | Battery: 9
+[20:45:43] Robot #3 - Moved from (5,5) to (4,5) | Battery: 9
+[20:45:43] Robot #4 - Cleaned cell at (6,6) | Battery: 10 | Total cleaned: 1
+[20:45:43] Robot #4 - Moved from (6,6) to (7,6) | Battery: 9
+[20:45:43] Robot #1 - Cleaned cell at (1,7) | Battery: 9 | Total cleaned: 2
+[20:45:43] Robot #1 - Moved from (1,7) to (1,6) | Battery: 8
+[20:45:43] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 9
+[20:45:43] Robot #2 - Moved from (4,4) to (5,4) | Battery: 8
+[20:45:43] Robot #3 - Cleaned cell at (4,5) | Battery: 9 | Total cleaned: 1
+[20:45:43] Robot #3 - Moved from (4,5) to (4,6) | Battery: 8
+[20:45:43] Robot #4 - Cleaned cell at (7,6) | Battery: 9 | Total cleaned: 2
+[20:45:43] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 9
+[20:45:43] Robot #4 - Moved from (7,6) to (7,7) | Battery: 8
+[20:45:43] Robot #1 - Cleaned cell at (1,6) | Battery: 8 | Total cleaned: 3
+[20:45:43] Robot #1 - Moved from (1,6) to (0,6) | Battery: 7
+[20:45:43] Robot #2 - Cleaned cell at (5,4) | Battery: 8 | Total cleaned: 1
+[20:45:43] Robot #2 - Moved from (5,4) to (6,4) | Battery: 7
+[20:45:43] Robot #3 - Cleaned cell at (4,6) | Battery: 8 | Total cleaned: 2
+[20:45:43] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 8
+[20:45:43] Robot #3 - Moved from (4,6) to (4,5) | Battery: 7
+[20:45:43] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 8
+[20:45:43] Robot #4 - Moved from (7,7) to (7,8) | Battery: 7
+[20:45:44] Robot #1 - Cleaned cell at (0,6) | Battery: 7 | Total cleaned: 4
+[20:45:44] Robot #1 - Moved from (0,6) to (0,5) | Battery: 6
+[20:45:44] Robot #2 - Moved from (6,4) to (6,3) | Battery: 6
+[20:45:44] Robot #3 - Moved from (4,5) to (4,6) | Battery: 6
+[20:45:44] Robot #4 - Moved from (7,8) to (7,9) | Battery: 6
+[20:45:44] Robot #1 - Cleaned cell at (0,5) | Battery: 6 | Total cleaned: 5
+[20:45:44] Robot #1 - Moved from (0,5) to (1,5) | Battery: 5
+[20:45:44] Robot #2 - Cleaned cell at (6,3) | Battery: 6 | Total cleaned: 2
+[20:45:44] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 6
+[20:45:44] Robot #2 - Moved from (6,3) to (5,3) | Battery: 5
+[20:45:44] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 6
+[20:45:44] Robot #3 - Moved from (4,6) to (4,5) | Battery: 5
+[20:45:44] Robot #4 - Cleaned cell at (7,9) | Battery: 6 | Total cleaned: 3
+[20:45:44] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 6
+[20:45:44] Robot #4 - Moved from (7,9) to (8,9) | Battery: 5
+[20:45:44] Robot #1 - Cleaned cell at (1,5) | Battery: 5 | Total cleaned: 6
+[20:45:44] Robot #1 - Moved from (1,5) to (1,6) | Battery: 4
+[20:45:44] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 5
+[20:45:44] Robot #2 - Moved from (5,3) to (5,2) | Battery: 4
+[20:45:44] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 5
+[20:45:44] Robot #3 - Moved from (4,5) to (5,5) | Battery: 4
+[20:45:44] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 5
+[20:45:44] Robot #4 - Moved from (8,9) to (9,9) | Battery: 4
+[20:45:44] Robot #1 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 4
+[20:45:44] Robot #1 - Moved from (1,6) to (2,6) | Battery: 3
+[20:45:44] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
+[20:45:44] Robot #2 - Moved from (5,2) to (5,1) | Battery: 3
+[20:45:44] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 4
+[20:45:44] Robot #3 - Moved from (5,5) to (6,5) | Battery: 3
+[20:45:44] Robot #4 - Recharging at (9,9) | Battery: 4 → 14
+[20:45:44] Robot #1 - Cleaned cell at (2,6) | Battery: 3 | Total cleaned: 7
+[20:45:44] Robot #1 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 3
+[20:45:44] Robot #1 - Moved from (2,6) to (3,6) | Battery: 2
+[20:45:44] Robot #2 - Recharging at (5,1) | Battery: 3 → 13
+[20:45:44] Robot #3 - Cleaned cell at (6,5) | Battery: 3 | Total cleaned: 3
+[20:45:44] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 3
+[20:45:44] Robot #3 - Moved from (6,5) to (7,5) | Battery: 2
+[20:45:44] Robot #4 - Recharging at (9,9) | Battery: 10 → 20
+[20:45:44] Robot #1 - Cleaned cell at (3,6) | Battery: 2 | Total cleaned: 8
+[20:45:44] Robot #1 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 2
+[20:45:44] Robot #1 - Moved from (3,6) to (4,6) | Battery: 1
+[20:45:44] Robot #2 - Recharging at (5,1) | Battery: 10 → 20
+[20:45:44] Robot #3 - Cleaned cell at (7,5) | Battery: 2 | Total cleaned: 4
+[20:45:44] Robot #3 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 2
+[20:45:44] Robot #3 - Moved from (7,5) to (7,6) | Battery: 1
+[20:45:44] Robot #4 - Fully recharged, resuming cleaning
+[20:45:44] Robot #4 - Leaving recharge point toward target
+[20:45:44] Robot #4 - Moved from (9,9) to (8,9) | Battery: 19
+[20:45:44] Robot #1 - DEACTIVATED at (4,6) | Reason: Insufficient battery to reach recharge | Total cleaned: 8
+[20:45:44] Robot #1 - DEACTIVATED at (4,6) | Reason: Battery depleted | Total cleaned: 8
+[20:45:44] Robot #2 - Fully recharged, resuming cleaning
+[20:45:44] Robot #2 - Leaving recharge point toward target
+[20:45:44] Robot #2 - Moved from (5,1) to (4,1) | Battery: 19
+[20:45:44] Robot #3 - DEACTIVATED at (7,6) | Reason: Insufficient battery to reach recharge | Total cleaned: 4
+[20:45:44] Robot #3 - DEACTIVATED at (7,6) | Reason: Battery depleted | Total cleaned: 4
+[20:45:44] Robot #4 - Moved from (8,9) to (8,8) | Battery: 18
+[20:45:44] Robot #2 - Cleaned cell at (4,1) | Battery: 19 | Total cleaned: 3
+[20:45:44] Robot #2 - Moved from (4,1) to (3,1) | Battery: 18
+[20:45:44] Robot #4 - Cleaned cell at (8,8) | Battery: 18 | Total cleaned: 4
+[20:45:44] Robot #4 - Moved from (8,8) to (9,8) | Battery: 17
+[20:45:44] Robot #2 - Cleaned cell at (3,1) | Battery: 18 | Total cleaned: 4
+[20:45:44] Robot #2 - Moved from (3,1) to (3,0) | Battery: 17
+[20:45:44] Robot #4 - Moved from (9,8) to (9,7) | Battery: 16
+[20:45:44] Robot #2 - Cleaned cell at (3,0) | Battery: 17 | Total cleaned: 5
+[20:45:44] Robot #2 - Moved from (3,0) to (2,0) | Battery: 16
+[20:45:44] Robot #4 - Cleaned cell at (9,7) | Battery: 16 | Total cleaned: 5
+[20:45:44] Robot #4 - Moved from (9,7) to (9,6) | Battery: 15
+[20:45:45] Robot #2 - Cleaned cell at (2,0) | Battery: 16 | Total cleaned: 6
+[20:45:45] Robot #2 - Moved from (2,0) to (1,0) | Battery: 15
+[20:45:45] Robot #4 - Cleaned cell at (9,6) | Battery: 15 | Total cleaned: 6
+[20:45:45] Robot #4 - Moved from (9,6) to (8,6) | Battery: 14
+[20:45:45] Robot #2 - Cleaned cell at (1,0) | Battery: 15 | Total cleaned: 7
+[20:45:45] Robot #2 - Moved from (1,0) to (0,0) | Battery: 14
+[20:45:45] Robot #4 - Cleaned cell at (8,6) | Battery: 14 | Total cleaned: 7
+[20:45:45] Robot #4 - Moved from (8,6) to (8,5) | Battery: 13
+[20:45:45] Robot #2 - Moved from (0,0) to (0,1) | Battery: 13
+[20:45:45] Robot #4 - Cleaned cell at (8,5) | Battery: 13 | Total cleaned: 8
+[20:45:45] Robot #4 - Moved from (8,5) to (9,5) | Battery: 12
+[20:45:45] Robot #2 - Cleaned cell at (0,1) | Battery: 13 | Total cleaned: 8
+[20:45:45] Robot #2 - Moved from (0,1) to (0,2) | Battery: 12
+[20:45:45] Robot #4 - Cleaned cell at (9,5) | Battery: 12 | Total cleaned: 9
+[20:45:45] Robot #4 - Moved from (9,5) to (9,4) | Battery: 11
+[20:45:45] Robot #2 - Cleaned cell at (0,2) | Battery: 12 | Total cleaned: 9
+[20:45:45] Robot #2 - Moved from (0,2) to (1,2) | Battery: 11
+[20:45:45] Robot #4 - Cleaned cell at (9,4) | Battery: 11 | Total cleaned: 10
+[20:45:45] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 11
+[20:45:45] Robot #4 - Moved from (9,4) to (9,5) | Battery: 10
+[20:45:45] Robot #2 - Cleaned cell at (1,2) | Battery: 11 | Total cleaned: 10
+[20:45:45] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 11
+[20:45:45] Robot #2 - Moved from (1,2) to (0,2) | Battery: 10
+[20:45:45] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 10
+[20:45:45] Robot #4 - Moved from (9,5) to (9,6) | Battery: 9
+[20:45:45] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 10
+[20:45:45] Robot #2 - Moved from (0,2) to (0,1) | Battery: 9
+[20:45:45] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 9
+[20:45:45] Robot #4 - Moved from (9,6) to (9,7) | Battery: 8
+[20:45:45] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 9
+[20:45:45] Robot #2 - Moved from (0,1) to (0,0) | Battery: 8
+[20:45:45] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 8
+[20:45:45] Robot #4 - Moved from (9,7) to (9,8) | Battery: 7
+[20:45:45] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 8
+[20:45:45] Robot #2 - Moved from (0,0) to (1,0) | Battery: 7
+[20:45:45] Robot #4 - LOW BATTERY! Going to recharge point at (9,9) | Battery: 7
+[20:45:45] Robot #4 - Moved from (9,8) to (9,9) | Battery: 6
+[20:45:45] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 7
+[20:45:45] Robot #2 - Moved from (1,0) to (2,0) | Battery: 6
+[20:45:45] Robot #4 - Recharging at (9,9) | Battery: 6 → 16
+[20:45:46] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 6
+[20:45:46] Robot #2 - Moved from (2,0) to (3,0) | Battery: 5
+[20:45:46] Robot #4 - Recharging at (9,9) | Battery: 10 → 20
+[20:45:46] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 5
+[20:45:46] Robot #2 - Moved from (3,0) to (4,0) | Battery: 4
+[20:45:46] Robot #4 - Fully recharged, resuming cleaning
+[20:45:46] Robot #4 - Leaving recharge point toward target
+[20:45:46] Robot #4 - Moved from (9,9) to (8,9) | Battery: 19
+[20:45:46] Robot #2 - Cleaned cell at (4,0) | Battery: 4 | Total cleaned: 11
+[20:45:46] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 4
+[20:45:46] Robot #2 - Moved from (4,0) to (4,1) | Battery: 3
+[20:45:46] Robot #4 - Moved from (8,9) to (7,9) | Battery: 18
+[20:45:46] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 3
+[20:45:46] Robot #2 - Moved from (4,1) to (5,1) | Battery: 2
+[20:45:46] Robot #4 - Moved from (7,9) to (7,8) | Battery: 17
+[20:45:46] Robot #2 - Recharging at (5,1) | Battery: 2 → 12
+[20:45:46] Robot #4 - Moved from (7,8) to (6,8) | Battery: 16
+[20:45:46] Robot #2 - Recharging at (5,1) | Battery: 10 → 20
+[20:45:46] Robot #4 - Moved from (6,8) to (5,8) | Battery: 15
+[20:45:46] Robot #2 - Fully recharged, resuming cleaning
+[20:45:46] Robot #2 - Leaving recharge point toward target
+[20:45:46] Robot #2 - Moved from (5,1) to (4,1) | Battery: 19
+[20:45:46] Robot #4 - Cleaned cell at (5,8) | Battery: 15 | Total cleaned: 11
+[20:45:46] Robot #4 - Moved from (5,8) to (4,8) | Battery: 14
+[20:45:46] Robot #2 - Moved from (4,1) to (5,1) | Battery: 18
+[20:45:46] Robot #4 - Cleaned cell at (4,8) | Battery: 14 | Total cleaned: 12
+[20:45:46] Robot #4 - Moved from (4,8) to (5,8) | Battery: 13
+[20:45:46] Robot #2 - Fully recharged, resuming cleaning
+[20:45:46] Robot #2 - Leaving recharge point toward target
+[20:45:46] Robot #2 - Moved from (5,1) to (4,1) | Battery: 17
+[20:45:46] Robot #4 - Moved from (5,8) to (6,8) | Battery: 12
+[20:45:46] Robot #2 - Moved from (4,1) to (3,1) | Battery: 16
+[20:45:46] Robot #4 - Moved from (6,8) to (7,8) | Battery: 11
+[20:45:47] Robot #2 - Moved from (3,1) to (3,2) | Battery: 15
+[20:45:47] Robot #4 - Moved from (7,8) to (8,8) | Battery: 10
+[20:45:47] Robot #2 - Cleaned cell at (3,2) | Battery: 15 | Total cleaned: 12
+[20:45:47] Robot #2 - Moved from (3,2) to (3,3) | Battery: 14
+[20:45:47] Robot #4 - Moved from (8,8) to (8,7) | Battery: 9
+[20:45:47] Robot #2 - Cleaned cell at (3,3) | Battery: 14 | Total cleaned: 13
+[20:45:47] Robot #2 - Moved from (3,3) to (3,2) | Battery: 13
+[20:45:47] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 9
+[20:45:47] Robot #4 - Moved from (8,7) to (7,7) | Battery: 8
+[20:45:47] Robot #2 - Moved from (3,2) to (4,2) | Battery: 12
+[20:45:47] Robot #4 - Moved from (7,7) to (8,7) | Battery: 7
+[20:45:47] Robot #2 - Cleaned cell at (4,2) | Battery: 12 | Total cleaned: 14
+[20:45:47] Robot #2 - Moved from (4,2) to (5,2) | Battery: 11
+[20:45:47] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 7
+[20:45:47] Robot #4 - Moved from (8,7) to (7,7) | Battery: 6
+[20:45:47] Robot #2 - Moved from (5,2) to (5,1) | Battery: 10
+[20:45:47] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 6
+[20:45:47] Robot #4 - Moved from (7,7) to (7,8) | Battery: 5
+[20:45:47] Robot #2 - Recharging at (5,1) | Battery: 10 → 20
+[20:45:47] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 5
+[20:45:47] Robot #4 - Moved from (7,8) to (6,8) | Battery: 4
+[20:45:47] Robot #2 - Fully recharged, resuming cleaning
+[20:45:47] Robot #2 - Leaving recharge point toward target
+[20:45:47] Robot #2 - Moved from (5,1) to (6,1) | Battery: 19
+[20:45:47] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 4
+[20:45:47] Robot #4 - Moved from (6,8) to (5,8) | Battery: 3
+[20:45:47] Robot #2 - Moved from (6,1) to (7,1) | Battery: 18
+[20:45:47] Robot #4 - LOW BATTERY! Going to recharge point at (5,7) | Battery: 3
+[20:45:47] Robot #4 - Moved from (5,8) to (5,7) | Battery: 2
+[20:45:47] Robot #2 - Cleaned cell at (7,1) | Battery: 18 | Total cleaned: 15
+[20:45:47] Robot #2 - Moved from (7,1) to (7,0) | Battery: 17
+[20:45:47] Robot #4 - Recharging at (5,7) | Battery: 2 → 12
+[20:45:48] Robot #2 - Cleaned cell at (7,0) | Battery: 17 | Total cleaned: 16
+[20:45:48] Robot #2 - Moved from (7,0) to (7,1) | Battery: 16
+[20:45:48] Robot #4 - Recharging at (5,7) | Battery: 10 → 20
+[20:45:48] Robot #2 - Moved from (7,1) to (8,1) | Battery: 15
+[20:45:48] Robot #4 - Fully recharged, resuming cleaning
+[20:45:48] Robot #4 - Leaving recharge point toward target
+[20:45:48] Robot #4 - Moved from (5,7) to (4,7) | Battery: 19
+[20:45:48] Robot #2 - Moved from (8,1) to (9,1) | Battery: 14
+[20:45:48] Robot #4 - Moved from (4,7) to (3,7) | Battery: 18
+[20:45:48] Robot #2 - Cleaned cell at (9,1) | Battery: 14 | Total cleaned: 17
+[20:45:48] Robot #2 - Moved from (9,1) to (9,0) | Battery: 13
+[20:45:48] Robot #4 - Moved from (3,7) to (2,7) | Battery: 17
+[20:45:48] Robot #2 - Cleaned cell at (9,0) | Battery: 13 | Total cleaned: 18
+[20:45:48] Robot #2 - Moved from (9,0) to (9,1) | Battery: 12
+[20:45:48] Robot #4 - Cleaned cell at (2,7) | Battery: 17 | Total cleaned: 13
+[20:45:48] Robot #4 - Moved from (2,7) to (2,8) | Battery: 16
+[20:45:48] Robot #2 - Moved from (9,1) to (9,2) | Battery: 11
+[20:45:48] Robot #4 - Cleaned cell at (2,8) | Battery: 16 | Total cleaned: 14
+[20:45:48] Robot #4 - Moved from (2,8) to (2,9) | Battery: 15
+[20:45:48] Robot #2 - Moved from (9,2) to (9,3) | Battery: 10
+[20:45:48] Robot #4 - Cleaned cell at (2,9) | Battery: 15 | Total cleaned: 15
+[20:45:48] Robot #4 - Moved from (2,9) to (2,8) | Battery: 14
+[20:45:48] Robot #2 - Cleaned cell at (9,3) | Battery: 10 | Total cleaned: 19
+[20:45:48] Robot #2 - Moved from (9,3) to (8,3) | Battery: 9
+[20:45:48] Robot #4 - Moved from (2,8) to (2,7) | Battery: 13
+[20:45:48] Robot #2 - Cleaned cell at (8,3) | Battery: 9 | Total cleaned: 20
+[20:45:48] Robot #2 - Moved from (8,3) to (7,3) | Battery: 8
+[20:45:48] Robot #4 - Moved from (2,7) to (3,7) | Battery: 12
+[20:45:48] Robot #2 - Moved from (7,3) to (7,2) | Battery: 7
+[20:45:48] Robot #4 - Moved from (3,7) to (4,7) | Battery: 11
+[20:45:49] Robot #2 - Cleaned cell at (7,2) | Battery: 7 | Total cleaned: 21
+[20:45:49] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 7
+[20:45:49] Robot #2 - Moved from (7,2) to (7,1) | Battery: 6
+[20:45:49] Robot #4 - Moved from (4,7) to (5,7) | Battery: 10
+[20:45:49] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 6
+[20:45:49] Robot #2 - Moved from (7,1) to (6,1) | Battery: 5
+[20:45:49] Robot #4 - Recharging at (5,7) | Battery: 10 → 20
+[20:45:49] Robot #2 - LOW BATTERY! Going to recharge point at (5,1) | Battery: 5
+[20:45:49] Robot #2 - Moved from (6,1) to (5,1) | Battery: 4
+[20:45:49] Robot #4 - Fully recharged, resuming cleaning
+[20:45:49] Robot #4 - Leaving recharge point toward target
+[20:45:49] Robot #4 - Moved from (5,7) to (5,6) | Battery: 19
+[20:45:49] Robot #2 - Recharging at (5,1) | Battery: 4 → 14
+[20:45:49] Robot #4 - Moved from (5,6) to (6,6) | Battery: 18
+[20:45:49] Robot #2 - Recharging at (5,1) | Battery: 10 → 20
+[20:45:49] Robot #4 - Moved from (6,6) to (6,5) | Battery: 17
+[20:45:49] Robot #2 - Fully recharged, resuming cleaning
+[20:45:49] Robot #2 - Leaving recharge point toward target
+[20:45:49] Robot #2 - Moved from (5,1) to (6,1) | Battery: 19
+[20:45:49] Robot #4 - Moved from (6,5) to (7,5) | Battery: 16
+[20:45:49] Robot #2 - Moved from (6,1) to (7,1) | Battery: 18
+[20:45:49] Robot #4 - Moved from (7,5) to (7,4) | Battery: 15
+[20:45:49] Robot #2 - Moved from (7,1) to (7,2) | Battery: 17
+[20:45:49] Robot #4 - Cleaned cell at (7,4) | Battery: 15 | Total cleaned: 16
+[20:45:49] 
+NO MORE PROGRESS POSSIBLE - MISSION ENDING
+[20:45:49] 
 
 === ROBOTS STATISTICS ===
-Robot #1: ACTIVE | Battery: 12 | Cleaned: 14 | Moves: 39
-Robot #2: ACTIVE | Battery: 12 | Cleaned: 13 | Moves: 39
-Robot #3: INACTIVE | Battery: 1 | Cleaned: 6 | Moves: 9
-Robot #4: ACTIVE | Battery: 12 | Cleaned: 17 | Moves: 43
+Robot #1: INACTIVE | Battery: 1 | Cleaned: 8 | Moves: 9
+Robot #2: ACTIVE | Battery: 17 | Cleaned: 21 | Moves: 54
+Robot #3: INACTIVE | Battery: 1 | Cleaned: 4 | Moves: 9
+Robot #4: ACTIVE | Battery: 15 | Cleaned: 16 | Moves: 53
 
 Totals:
-Active robots: 3/4
-Total cleaned: 50
-Total movements: 130
+Active robots: 2/4
+Total cleaned: 49
+Total movements: 125
 ========================
 
-[22:05:44] === SIMULATION COMPLETE ===
-[22:05:44] Total steps: 48
-[22:05:44] Total movements: 130
-[22:05:44] Initial dirty cells: 50
-[22:05:44] Cells cleaned: 50
-[22:05:44] Cleaning percentage: 100,00%
-[22:05:44] Active robots at end: 3/4
-[22:05:44] Mission status: COMPLETED
-[22:05:44] ===========================
+[20:45:49] === SIMULATION COMPLETE ===
+[20:45:49] Total steps: 62
+[20:45:49] Total movements: 125
+[20:45:49] Initial dirty cells: 50
+[20:45:49] Cells cleaned: 49
+[20:45:49] Cleaning percentage: 98,00%
+[20:45:49] Active robots at end: 2/4
+[20:45:49] Mission status: COMPLETED
+[20:45:49] ===========================
 
 
 ========================================
   SIMULATION COMPLETED
 ========================================
 Total dirty cells: 50
-Cells cleaned: 50
-Cleaning percentage: 100,00%
+Cells cleaned: 49
+Cleaning percentage: 98,00%
 Mission status: COMPLETED
-Ended at: 2025-11-08 22:05:44
+Ended at: 2025-11-09 20:45:49
 ========================================
